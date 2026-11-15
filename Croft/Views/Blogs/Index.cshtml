@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "Discover Naran Valley Updates | Croft Family Cottages Blog";
+    ViewBag.keywords = "Naran hotels, hotels in Naran, Latest updates in Naran, Naran hotel booking, Naran weather";
+    ViewBag.canonical = "https://thecroftcottages.com/naran-valley-updates";
+    ViewBag.Description = "Explore the enchanting Valley through our blog. Get Naran valley updates on seasons, trekking, local culture, and insider tips with Croft Family Cottages.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var blogs = (List<Croft.Models.Post>)ViewBag.blogs;
+}
+
+<section class="page-cover back-size" id="cover-flight-grid-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">BLOGS</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li class="breadcrumb-item">Blogs</li>
+                </ul>
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+
+<section class="innerpage-wrapper">
+    <div id="tour-details" class="innerpage-section-padding">
+        <div class="container">
+            <div class="page-heading">
+                <h1>Explore Himalayan Magic with Croft Family Cottages Blog</h1>
+                <hr class="heading-line">
+                <blockquote>Welcome to our blog, where we invite you to explore the enchanting beauty and the latest updates of the Naran Valley. At Croft Family Cottages, we are not just about providing cosy accommodations; we are also your gateway to the mesmerizing wonders of the Naran Valley. Our blog is your go-to source for staying informed about the Valley's ever-changing landscapes, activities, and seasonal delights. Whether you are planning your trip or reminiscing about your stay, our Naran Valley Updates blog ensures you are well-acquainted with all the magic this stunning destination has to offer.</blockquote>
+
+            </div>
+            <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-8 col-xl-8 content-side">
+
+                    <div>
+                        @{
+                            foreach (var ro in blogs)
+                            {
+
+                                string detailUrl = "/post/" + ro.PostId + "/" + ro.Slug;
+
+                                <div class="feature-slider">
+                                    <div><img src="~/Uploads/blog/@ro.DefaultImage" class="img-fluid" alt="@ro.Title" /></div>
+                                </div>
+                                <div class=" post-more">
+                                    <h2>
+                                        @*<a href="@Url.Action("Post", "Blogs",new { PostId =  ro.PostId })">@ro.Title </a>*@
+                                        <a href='@detailUrl'>@ro.Title</a>
+                                    </h2>
+
+                                    <div class="post-additional">
+                                        @ro.PublishedDate By<a href="#">@ro.Author</a>.
+                                    </div>
+
+                                    <p>
+                                        @ro.ShortDescriptions
+                                    </p>
+                                </div>
+                                <div class="post-more mb-4">
+                                    <a href="@detailUrl"><u>READ MORE</u></a>
+                                </div>
+                            }
+                        }
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-md-12 col-lg-4 side-bar right-side-bar">
+
+                    <div class="sidebar">
+                        <!-- Popular posts start-->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="main-title-2">
+                                <h3 style="color:#fff">Popular Rooms</h3>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Delxue.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Deluxe</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.10000</a>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Executive Room.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Executive Room</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.14000</a>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                        </div>
+                        <!-- Popular posts end-->
+                        <!-- Social media start -->
+                        <div class="sidebar-widget2 popular-posts">
+                            
+                            <div class="main-title-2">
+                                <h3 style="color:white">NARAN WEATHER</h3>
+                            </div>
+                            <div class="latest-tweet" style="border-radius: 15px">
+                                <a class="weatherwidget-io" href="https://forecast7.com/en/34d9173d65/naran/" data-label_1="NARAN" data-label_2="WEATHER" data-theme="pure">MURREE WEATHER</a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="social-media sidebar-widget clearfix">
+                            <!-- Main Title 2 -->
+                            <div class="main-title-2">
+                                <h3 style="color:#fff"><span>Social</span> Media</h3>
+                            </div>
+                            <!-- Social list -->
+                            <ul class="social-list">
+                                <li>
+                                    <a href="https://www.facebook.com/croftfamilycottages"
+                                       class="facebook-bg">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/CroftCottages1" class="twitter-bg">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.instagram.com/croftfamilycottagesnaran/
+"
+                                       class="google-bg">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                @Html.Raw("<li><a href='https://www.youtube.com/@TheCroftFamilyCottagesNaran' class='youtube-bg'><i class='fa fa-youtube-play'></i></a></li>")
+
+
+                            </ul>
+                        </div>
+                        <!-- Social media end -->
+                    </div>
+
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end tour-detail -->
+</section><!-- end innerpage-wrapper -->
+
+<script>
+    !(function (d, s, id) {
+        var js,
+            fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://weatherwidget.io/js/widget.min.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    })(document, "script", "weatherwidget-io-js");</script>

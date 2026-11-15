@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "ShowDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h3 class="callout callout-info"
+                        style="text-align: center; font-weight: bold; font-size: 20px;background: #183f3e;color:#fff;">
+                        Booking details
+                    </h3>
+                </div>
+
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <style>
+
+
+                    td {
+                        border: 1px solid #000; /* Black border for td elements */
+                        padding: 8px;
+                        text-align: center;
+                        font-size: large;
+                    }
+
+                    th {
+                        border: 1px solid #000; /* Black border for td elements */
+                        padding: 8px;
+                    }
+
+                    tr:first-child td {
+                        background-color: #183f3e;
+                        color: #fff;
+                        font-weight: bold;
+                    }
+                </style>
+                <div class="card">
+                    <div class="card-header" align="center">
+                        <a href="#" class="navbar-brand1 py-1 mb-2">
+                            <img src="~/Content/Admin/dist/img/clogo.png" style="width:250px" class="fa-plane" alt="hotel-img" />
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row ml-1">
+                            <h4>Guest Name:</h4>
+                            <h4 class="ml-1" style="font-weight:100">M Ali</h4>
+                        </div>
+                        <div class="row ml-1">
+                            <h4>Phone:</h4>
+                            <h4 class="ml-1" style="font-weight:100">03142434555</h4>
+                        </div>
+                        <div class="row ml-1">
+                            <h4>Booking date:</h4>
+                            <h4 class="ml-1" style="font-weight:100">11/22/2023</h4>
+                        </div>
+                        <div class="row ml-1">
+                            <h4>Booking Raf#:</h4>
+                            <h4 class="ml-1" style="font-weight:100">102132484328434</h4>
+                        </div>
+
+
+
+
+
+                        <div class="card-body table-responsive mb-4 p-0">
+
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <td>Check In</td>
+                                        <td>CheckOut</td>
+                                        <td>No.Nights</td>
+                                        <td>Room Type</td>
+                                        <td>Amount</td>
+                                        <td>Tax</td>
+                                        <td>Total Amount</td>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>20-05-2018</th>
+                                        <th>25-05-2018</th>
+                                        <th>4</th>
+                                        <th>Deluxe</th>
+                                        <th>80000</th>
+                                        <th>5000</th>
+                                        <th style="background-color: #183f3e;color: #fff;">Rs.85000</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h4>IMPORTANT NOTES:</h4>
+                                <ul style="list-style: disc; margin-left:10px">
+                                    <li style="color:#000">Party and loud gathering are not allowed.</li>
+                                    <li style="color:#000">Check in time is 2PM.Guest before 2PM will be entertained in case of room availability.</li>
+                                    <li style="color:#000">Cheack-out time is 12(Noon),Guest will be charged fee after time.</li>
+                                    <li style="color:#000">Any damage to the property will be charged by the guest</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-5">
+                                <section class="content">
+                                    <div class="card p-1" style="background-color:#183f3e;">
+                                        <h3 style="color: #fff;">Bank Details:</h3>
+
+                                        <div class="row ml-1">
+                                            <h4 style="color: #fff;">Bank:</h4>
+                                            <h4 class="ml-1" style="font-weight:100;color: #fff;">
+                                                Meezan Bank- ISLAMABAD
+                                            </h4>
+                                        </div>
+                                        <div class="row ml-1">
+                                            <h4 style="color: #fff;">Owner Name:</h4>
+                                            <h4 class="ml-1" style="font-weight:100;color: #fff;">Muhammad Ali</h4>
+                                        </div>
+                                        <div class="row ml-1">
+                                            <h4 style="color: #fff;">Account Number:</h4>
+                                            <h4 class="ml-1" style="font-weight:100;color: #fff;">02434959332425</h4>
+                                        </div>
+                                        <div class="row ml-1">
+                                            <h4 style="color: #fff;">IBAN:</h4>
+                                            <h4 class="ml-1" style="font-weight:100;color: #fff;">PK85MEZN00030101063</h4>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <p>Please contact our customer care team 24/7 at <a href="tel:+923312324443" style="color:#183f3e">+92 331 2324443</a></p>
+                        <p>Thanks for choosing <a href="https://thecroftcottages.com/" style="color:#183f3e">The Croft Family</a>, we wish you a pleasant stay</p>
+
+                    </div>
+                    <!-- /.card-body -->
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

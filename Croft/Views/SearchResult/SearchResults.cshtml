@@ -1,0 +1,796 @@
+﻿@{
+
+    ViewBag.Title = "The Croft Hotel  at Naran | Available Rooms";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "The Croft Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+
+    List<Croft.Controllers.PropertySearch> results = new List<Croft.Controllers.PropertySearch>();
+
+    string _CheckIn = "";// DateTime.Now;
+    string _CheckOut = ""; // DateTime.Now;
+
+    int checkRooms = 0;
+
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? roomPrice = 0;
+    int? _TotalPax = 0;
+    string Params = (string)Session["params"];
+    string[] p = Params.Split('&');
+
+    _CheckIn = Convert.ToString(p[0]);
+    _CheckOut = Convert.ToString(p[1]);
+    _adults = Convert.ToInt32(p[2]);
+    _children = Convert.ToInt32(p[3]);
+    _NoOfRooms = Convert.ToInt32(p[4]);
+    _TotalPax = _adults + _children;
+
+    List<Croft.Controllers.RoomImages> Img = new List<Croft.Controllers.RoomImages>();
+
+    if (TempData["Images"] != null)
+    {
+        Img = (List<Croft.Controllers.RoomImages>)TempData["Images"];
+    }
+
+    if (_TotalPax == 0)
+    {
+        _TotalPax = 1;
+    }
+
+    if (Session["results"] != null)
+    {
+        results = (List<Croft.Controllers.PropertySearch>
+            )Session["results"];
+    }
+
+    //  TimeSpan t = Convert.ToDateTime(_CheckIn) - Convert.ToDateTime(_CheckOut);
+    // int noOfDay = (int)t.TotalDays;
+}
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Moment.js -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+
+<!-- Daterangepicker JS -->
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- Daterangepicker CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+    var value = 0;
+    var DiscountedAmount = 0
+
+    $j(function () {
+
+        $j('input[name="dtFrom2"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            autoClose: true,
+            autoApply: true,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        }, function (start, end, label) {
+            var nextDay = moment(start).add(1, 'days');
+            $j('input[name="dtTo2"]').data('daterangepicker').setStartDate(nextDay);
+            $j('input[name="dtTo2"]').data('daterangepicker').setEndDate(nextDay);
+        });
+
+        // dtTo2
+        $j('input[name="dtTo2"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            autoClose: true,
+            autoApply: true,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        });
+
+    $j("input[name='RemoveRooms']").hide();
+
+    $j("button[name='CalculateMinus']").on('click', function (e) {
+        var id = ($j(this).data("value"));
+        if ($j('#txtQuatntity_' + id).val() > 1) {
+            value = parseInt($j('#txtQuatntity_' + id).val()) - 1;
+            $j('#txtQuatntity_' + id).val(value);
+            totalAmount = parseInt($j('#hdNormalPrice_' + id).val() * value);
+            $("#spNormalPrice_" + id).html(totalAmount);
+            DiscountedAmount = parseInt($j('#hdDiscountedPrice_' + id).val() * value);
+            $("#spDiscountedPRice_" + id).html(DiscountedAmount);
+        }
+
+        Calculate(id);
+    });
+
+    $j("button[name='CalculatePlus']").on('click', function (e) {
+        var id = ($j(this).data("value"));
+        var _NoOfRoomsLeft = $j('#NoOfRoomsLeft_' + id).val();
+        if ($j('#txtQuatntity_' + id).val() < parseInt(_NoOfRoomsLeft)) {
+            value = parseInt($j('#txtQuatntity_' + id).val()) + 1;
+            $j('#txtQuatntity_' + id).val(value);
+            totalAmount = parseInt($j('#hdNormalPrice_' + id).val() * value);
+            $("#spNormalPrice_" + id).html(totalAmount);
+            $('#hdNormalPrice_' + id).html(totalAmount);
+            DiscountedAmount = parseInt($j('#hdDiscountedPrice_' + id).val() * value);
+            $("#spDiscountedPRice_" + id).html(DiscountedAmount);
+        }
+
+        Calculate(id);
+    });
+
+    $j("input[name='ShowDetails']").click(function () {
+        var _id = $j(this).attr('id');
+        _id = _id.split('_');
+        _id = _id[1];
+
+        $j("#SelectRoom_" + _id).prop("checked", true);
+        // $j("#RemoveRooms_" + _id).show();
+        Calculate(_id);
+    });
+
+    $j("input[name='RemoveRooms']").click(function () {
+        var _id = $j(this).attr('id');
+        _id = _id.split('_');
+        _id = _id[1];
+
+        $j("#SelectRoom_" + _id).prop("checked", false);
+
+        Calculate(_id);
+        $j("#RemoveRooms_" + _id).hide();
+    });
+
+    function Calculate(_Id) {
+        //var i = 0;
+        var TotalRooms = 0;
+        var GrandTotal = 0;
+        var RoomCate = "";
+        var _RoomCateRoomNums = '';
+        var _RatePlanID = '';
+        var _RoomRates = '';
+        var _RoomRatesN = '';
+        var flag = 0;
+
+        debugger
+
+        //var _Id = $j(this).attr('id');
+        //_Id = _Id.split('_');
+        //_Id = _Id[1];
+        var _roomCate = $j('#hdRoomCate_' + _Id).val();
+        //alert($j('#txtQuatntity_' + _Id).val());
+        //  _roomCate = _roomCate.split('_');
+        //  _roomCate = _roomCate[1];
+
+        var roomCateRoomNums = $j('#txtQuatntity_' + _Id).val();
+        //roomCateRoomNums = roomCateRoomNums.split('_');
+        //roomCateRoomNums = roomCateRoomNums[1];
+
+        // alert(roomCateRoomNums);
+
+        _RoomRates = _RoomRates + ',' + $j('#hdDiscountedPrice_' + _Id).val();
+        _RoomRatesN = _RoomRatesN + ',' + $j('#hdNormalPrice_' + _Id).val();
+        var _ratePlanID = $j('#RatePlanID_' + _Id).attr('id');
+        _ratePlanID = _ratePlanID.split('_');
+        _ratePlanID = _ratePlanID[1];
+        _RatePlanID = _RatePlanID + "," + _ratePlanID;
+
+        TotalRooms = TotalRooms + parseInt($j("#txtQuatntity_" + _Id).val());
+        GrandTotal = GrandTotal + parseInt($j("#spDiscountedPRice_" + _Id).html());
+        if (isNaN(GrandTotal) || GrandTotal == 0) {
+            GrandTotal = parseInt($j('#hdNormalPrice_' + _Id).val() * TotalRooms);
+
+        }
+        RoomCate = RoomCate + "," + _roomCate;
+        _RoomCateRoomNums = _RoomCateRoomNums + "," + roomCateRoomNums;
+
+        // alert(GrandTotal);
+        $j('#RatePlanIDs').val(_RatePlanID);
+        $j('#hdTotalRooms').val(TotalRooms);
+        $j('#hdTotalAmount').val(GrandTotal);
+        $j('#_TotalRooms').html(TotalRooms);
+        $j('#_TotalAmount').html(GrandTotal);
+        $j('#_TotalRooms1').html(TotalRooms);
+        $j('#_TotalAmount1').html(GrandTotal);
+        $j('#RoomCatCode').val(RoomCate);
+        $j('#RoomCateRoomNums').val(_RoomCateRoomNums);
+        $j('#RoomRates').val(_RoomRates);
+        //     console.log($j('#RoomRates').val());
+        // console.log($j('#hdTotalAmount').val());
+        flag = 1;
+        if (GrandTotal == 0) {
+            alert("Please select atleast one room.")
+        }
+        else {
+            //  $('#myModal').modal('show');
+            //  $j("#sticky").show();
+        }
+    }
+
+
+    $('#OpenModal').click(function () {
+        $('#myModal').modal('show');
+        $("#sticky").hide();
+    });
+
+    $('#closemodal').click(function () {
+        $('#myModal').modal('hide');
+        $("#sticky").show();
+    });
+
+    $('#closepicmodal').click(function () {
+        $('#carouselModal').modal('hide');
+    });
+
+    $('#closepolicymodal').click(function () {
+        $('#policyModal').hide();
+    });
+
+    $j("#dvPolicy a").click(function () {
+
+        var _id = $j(this).attr('id');
+        _id = _id.split('_');
+        _id = _id[1];
+
+        try {
+            $.ajax({
+                url: '/SearchResult/RoomPolicy',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: '&CancellationPolicy=' + _id,
+                success: function (data) {
+                    $("#policyName").empty();
+                    $("#Breakfst").empty();
+                    $("#CancellationPolicy").empty();
+                    $("#FreeCancelBefore").empty();
+                    $("#GuestChargedForCancellation").empty();
+                    $("#ChargedForNoShow").empty();
+                    // alert(_id)
+                    // console.log(data);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            if (i == 0) {
+                                $("#policyName").append(item.RatePlanName);
+
+                                if (item.Breakfst == 1) {
+                                    $("#Breakfst").append("Included");
+                                }
+                                else {
+                                    $("#Breakfst").append("Not Included");
+                                }
+
+                                $("#CancellationPolicy").append(item.CancellationPolicy);
+
+                                if (item.ChargedForNoShow == 1) {
+                                    $("#ChargedForNoShow").append("Same as the cancellation fee");
+                                }
+                                else {
+                                    $("#ChargedForNoShow").append("100% of the total price");
+                                }
+
+                                if (item.FreeCancelBefore == 1) {
+                                    $("#FreeCancelBefore").append("The cost of the first night");
+                                }
+                                else if (item.FreeCancelBefore == 2) {
+                                    $("#FreeCancelBefore").append("50% of the total price");
+                                }
+                                else {
+                                    $("#FreeCancelBefore").append("100% of the total price");
+                                }
+
+
+                                if (item.HowlongFreeOfCharge == 1) {
+                                    $("#GuestChargedForCancellation").append("until 6:00PM on the day of arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 2) {
+                                    $("#GuestChargedForCancellation").append("until 2:00PM on the day of arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 3) {
+                                    $("#GuestChargedForCancellation").append("until 1 day before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 4) {
+                                    $("#GuestChargedForCancellation").append("until 2 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 5) {
+                                    $("#GuestChargedForCancellation").append("until 3 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 6) {
+                                    $("#GuestChargedForCancellation").append("until 5 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 7) {
+                                    $("#GuestChargedForCancellation").append("until 7 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 8) {
+                                    $("#GuestChargedForCancellation").append("until 14 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 9) {
+                                    $("#GuestChargedForCancellation").append("until 21 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 10) {
+                                    $("#GuestChargedForCancellation").append("until 28 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 11) {
+                                    $("#GuestChargedForCancellation").append("until 30 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 12) {
+                                    $("#GuestChargedForCancellation").append("until 42 days before arrival");
+                                }
+                                else if (item.HowlongFreeOfCharge == 13) {
+                                    $("#GuestChargedForCancellation").append("until 60 days before arrival");
+                                }
+                                else {
+                                    $("#FreeCancelBefore").append("No Free Cancellation");
+                                }
+
+                                debugger
+                                $j("#policyModal").show();
+                            }
+                        });
+                    }
+                },
+                error: function (err) {
+                    alert(err.status + " : " + err.statusText);
+                }
+
+            });
+        } catch (e) {
+            alert(e.status + " : " + e.statusText);
+            // window.location.href = '/Booking/BookingList';
+        }
+    });
+    });
+</script>
+
+
+
+<section class="innerpage-wrapper">
+
+    <div id="search-result-page" style="margin-top:50px">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-12 col-xl-12 content-side">
+                    <div class="page-search-form">
+                        <h2>Search the <span>Hotel <i class="fa fa-building"></i></span></h2>
+
+                        <form class="pg-search-form">
+                            <div class="row">
+                                <!-- end columns -->
+
+                                <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-group">
+                                                <label><span><i class="fa fa-calendar"></i></span> Check In</label>
+                                                <input type="text" class="form-control" id="dtFrom2" name="dtFrom2" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-group">
+                                                <label><span><i class="fa fa-calendar"></i></span> Check Out</label>
+                                                <input type="text" class="form-control" id="dtTo2" name="dtTo2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12 col-lg-3 col-xl-3">
+                                    <div class="row">
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-group">
+                                                <label><span><i class="fa fa-users"></i></span>Adults</label>
+                                                <select class="form-control" name="Adults" id="Adults">
+                                                    <option selected>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                    <option>04</option>
+                                                </select>
+                                            </div>
+                                        </div><!-- end columns -->
+
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-group">
+                                                <label><span><i class="fa fa-users"></i></span>Children</label>
+                                                <select class="form-control" name="Children" id="Children">
+                                                    <option selected>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                    <option>04</option>
+                                                </select>
+                                            </div>
+                                        </div><!-- end columns -->
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 col-lg-3 col-xl-3">
+                                    <div class="form-group">
+                                        <label><span><i class="fa fa-map-clone"></i></span>Rooms</label>
+                                        <select class="form-control" name="NoOfRooms" id="NoOfRooms">
+                                            <option selected>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div><!-- end row -->
+
+                            <button onclick="SearchResults12()" class="btn btn-orange srch">Search</button>
+                        </form>
+
+                    </div><!-- end page-search-form -->
+
+
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end search-result-page -->
+    </div>
+
+    <div id="hotel-listing" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+                @if (results.Count == 0)
+                {
+                    <p>No room available. Please try another dates.</p>
+                }
+                else
+                {
+
+                    <!-- property start -->
+                    foreach (var item in results)
+                    {
+                        //HotelDBEntities HDE = new HotelDBEntities();
+
+                        //var rp = (from a in HDE.RoomPictures
+                        //          where (a.RoomCode == item.RoomCateCode)
+                        //          select new
+                        //          {
+                        //              ImageName = a.Picture
+                        //          }).ToList();
+
+                        if (item.NoOfRooms > 0)
+                        {
+                            string[] features = null;
+                            using (Html.BeginForm("ReservationPost2", "SearchResult", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-3 col-lg-3 col-xl-12" id="res">
+                                    <div class="list-block  h-list-block">
+                                        <div class="list-content">
+                                            <div class="main-img list-img h-list-img" style="position: relative; overflow: hidden;">
+                                                <div style="position:absolute; top: 10px; left: 10px; background-color: #183f3e; color: #fff; padding: 5px;">
+                                                    Hurry! @item.NoOfRooms <span>Rooms Left</span>
+                                                </div>
+                                                <input type="hidden" name="NoOfRoomsLeft" id="NoOfRoomsLeft_@item.Id" value="@item.NoOfRooms" />
+                                                <a>
+
+                                                    <img src="../uploads/@item.imgURL" class="img-fluid" alt="hotel-img" />
+                                                </a>
+
+                                                <div class="main-mask">
+                                                    <ul class="list-unstyled list-inline offer-price-1">
+                                                        <li class="list-inline-item price">
+                                                            @if (item.TotalAmount == item.discountedprice || item.discountedprice == null || item.discountedprice == 0)
+                                                            {
+                                                                <span>
+                                                                    Rs.<span id="spNormalPrice_@item.Id">@item.TotalAmount</span> / <span id="noOfDays_@item.Id"></span> Nights
+                                                                </span>
+
+                                                                @*<span>
+                                                                        Rs.<span id="spNormalPrice_@item.Id">@item.TotalAmount   NoofDays/ Night</span>
+                                                                    </span>*@
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>
+                                                                    Rs. <span id="spNormalPrice_@item.Id" style="text-decoration:line-through">@item.TotalAmount</span>
+                                                                    Rs. <span id="spDiscountedPRice_@item.Id">@item.discountedprice</span> / <span id="noOfDays_@item.Id"></span>  Nights
+                                                                </span>
+                                                            }
+
+
+                                                        </li>
+                                                        <li class="list-inline-item rating">
+                                                            <span style="color: #fff"><i class="fa fa-user" style="color:#b6b6b6"></i> @item.AdultAllowed Adults ,</span>
+                                                            <span style="color:#fff"> @item.NoOfChildAllowed children</span>
+
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- end main-mask -->
+                                            </div><!-- end h-list-img -->
+
+                                            <style>
+                                                .h-list-info {
+                                                    position: relative;
+                                                }
+
+                                                .btn-search-dates {
+                                                    position: absolute;
+                                                    bottom: 20px; /* Adjust the distance from the bottom */
+                                                    right: 20px;
+                                                    width: 100px /* Adjust the distance from the right */
+                                                }
+                                            </style>
+
+                                            <div class="list-info h-list-info">
+                                                <h3 class="block-title"><a href="#">@item.RoomCategory</a></h3>
+
+                                                <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+                                                    <div class="hover-text">
+                                                        <p class="block-minor" style="padding-left: 15px; margin-top: 10px">
+                                                            Policy:
+                                                            <a href="#myModal" data-toggle="modal"><u>Standard</u></a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+
+
+
+
+                                                <div class="facilities-container">
+                                                    @*<ul class="row">
+                                                            <li style="padding:10px ;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>PARKING</span>
+                                                            </li>
+                                                            <li style="padding: 10px;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>BREAKFAST</span>
+                                                            </li>
+                                                            <li style="padding: 10px;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>WIFI</span>
+                                                            </li>
+                                                            <li style="padding: 10px;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>RECEPTION 24 HOUR</span>
+                                                            </li>
+                                                            <li style="padding: 10px;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>WIFI</span>
+                                                            </li>
+                                                            <li style="padding: 10px;">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                <span>RECEPTION 24 HOUR</span>
+                                                            </li>
+                                                        </ul>*@
+
+                                                    @if (!string.IsNullOrEmpty(item.Features))
+                                                    {
+                                                        var featuresList = item.Features
+                                                            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                            .Select(f => f.Trim())
+                                                            .Where(f => !string.IsNullOrWhiteSpace(f));
+
+                                                        <ul class="facilities-list clearfix">
+                                                            @foreach (var feature in featuresList)
+                                                            {
+                                                                <li style="font-size:12px">
+                                                                    <i class="fa fa-check"></i>
+                                                                    <span>  @feature</span>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    }
+
+                                                </div>
+                                                <div>
+                                                    <div class="input-group1 plus-minus-input">
+                                                        <h4 style="padding-right: 15px; margin-top: 10px ;color:#fff">Add Room</h4>
+                                                        <div class="input-group-button">
+                                                            <button type="button" class="button hollow circle" data-quantity="minus" name="CalculateMinus" data-value="@item.Id" ID="CalculateMinus_@item.Id" data-field="quantity">
+                                                                <i class="fa fa-minus" aria-hidden="true" style="color:#183f3e"></i>
+                                                            </button>
+                                                        </div>
+                                                        <input class="input-group-field" type="number" name="txtQuatntity" ID="txtQuatntity_@item.Id" value="1">
+                                                        <div class="input-group-button">
+                                                            <button type="button" class="button hollow circle" data-value="@item.Id" ID="CalculatePlus_@item.Id" name="CalculatePlus" data-quantity="plus" data-field="quantity">
+                                                                <i class="fa fa-plus" aria-hidden="true" style="color:#183f3e"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <input type="hidden" data-value="@item.Id" id="hdRoomCate_@item.Id" value="@item.RoomCateCode" />
+                                                <input type="hidden" id="hdNormalPrice_@item.Id" value="@item.TotalAmount" />
+                                                <input type="hidden" id="hdDiscountedPrice_@item.Id" value="@item.discountedprice" />
+                                                <input type="hidden" name="RatePlanID" id="RatePlanID_@item.Id" value="@item.rateplanId" />
+                                                <input type="hidden" id="hdTotalRooms" name="hdTotalRooms" value="@_NoOfRooms" />
+                                                <input type="hidden" id="hdTotalAmount" name="hdTotalAmount" value="@item.TotalAmount" />
+                                                @*<input type="hidden" name="CheckIn" value="@_CheckIn" />
+                                                    <input type="hidden" name="CheckOut" value="@_CheckOut" />*@
+                                                <input type="hidden" name="CheckIn" id="CheckIn" value="@_CheckIn" />
+                                                <input type="hidden" name="CheckOut" id="CheckOut" value="@_CheckOut" />
+                                                <input type="hidden" name="RoomCatCode" id="RoomCatCode" />
+                                                <input type="hidden" name="Adults" value="@_adults" />
+                                                <input type="hidden" name="Children" value="@_children" />
+                                                <input type="hidden" name="NoOfRooms" value="@_NoOfRooms" />
+                                                <input type="hidden" name="RoomRate" value="@roomPrice" />
+                                                <input type="hidden" name="RoomCate" value="@item.RoomCateCode" />
+                                                <input type="hidden" name="RoomCateRoomNums" id="RoomCateRoomNums" />
+                                                <input type="hidden" name="RatePlanIDs" value="@item.rateplanId" />
+                                                <input type="hidden" name="RoomRates" value="@item.discountedprice" />
+
+                                                <div class="button mt-4">
+
+
+                                                    <input type="submit" class="btn btn-orange1 btn-lg btn-search-dates" data-value="@item.Id" name="ShowDetails" id="ShowDetails_@item.Id" value="Book This" />
+
+                                                </div>
+                                            </div><!-- end h-list-info -->
+
+                                        </div><!-- end list-content -->
+                                    </div><!-- end h-list-block -->
+                                </div>
+
+                            }
+                        }
+                    }
+                }
+
+            </div>
+
+        </div><!-- end row -->
+
+    </div><!-- end hotel-listing -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Policy: Bed & Breakfast</h4>
+                </div>
+                <div class="modal-body" style="padding: 5%;">
+                    <table>
+
+                        <tr>
+                            <td><b>Meals:</b> Breakfast Included</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Cancellation:</b> Three days before arrival</td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-orange btn-lg" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</section>
+
+<!-- Page Scr~/content/Star/ipts Ends -->
+
+<script>
+    $(document).ready(function () {
+
+        function initializeDtTo2(minDate, defaultDate) {
+            $('input[name="dtTo2"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                minDate: minDate,
+                startDate: defaultDate,
+                autoApply: true,
+                locale: {
+                    format: 'MM/DD/YYYY'
+                }
+            });
+        }
+
+        // Initialize Check-In Picker
+        $('input[name="dtFrom2"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            minDate: moment(),
+            autoApply: true,
+            locale: {
+                format: 'MM/DD/YYYY'
+            }
+        }, function (start) {
+            let nextDay = moment(start).add(1, 'days');
+
+            // Reset and re-init Check-Out
+            $('input[name="dtTo2"]').val('');
+            $('input[name="dtTo2"]').data('daterangepicker').remove();
+
+            initializeDtTo2(start, nextDay);
+        });
+
+        // Initial setup of Check-Out with tomorrow
+        let today = moment();
+        let tomorrow = moment().add(1, 'days');
+        initializeDtTo2(today, tomorrow);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Move the cursor to the specific div with id "yourDivId"
+        $("#hotel-listing").attr("tabindex", -1).focus();
+
+    });
+</script>
+
+<script>
+
+
+    function SearchResults12() {
+
+        var buttons = document.querySelectorAll('.srch');
+
+        var StartDate = document.getElementsByName('dtFrom2')[0].value;
+        var EndDate = document.getElementsByName('dtTo2')[0].value;
+        var RoomValue = document.getElementsByName('NoOfRooms')[0].value;
+        var Adults = document.getElementsByName('Adults')[0].value;
+        var Kids = document.getElementsByName('Children')[0].value;
+
+
+        // Loop through each button and disable it
+        buttons.forEach(function (button) {
+            button.disabled = true;
+        });
+
+        window.location.href = "/Home/PropertySearch?CheckIn=" + StartDate + "&CheckOut=" + EndDate + "&Adults=" + Adults + "&Children=" + Kids + "&NoOfRooms=" + RoomValue;
+    }
+
+
+
+</script>
+
+@*<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let checkIn = document.querySelector("#CheckIn").value;
+        let checkOut = document.querySelector("#CheckOut").value;
+        let d1 = new Date(checkIn);
+        let d2 = new Date(checkOut);
+
+        console.log("Check-in Date:", checkIn, "Check-out Date:", checkOut);
+        console.log("Parsed Check-in Date:", d1, "Parsed Check-out Date:", d2);
+
+        let daysDifference = Math.floor((d2 - d1) / (1000 * 60 * 60 * 24));
+        console.log("Days Difference:", daysDifference);
+
+        let roomPriceElements = document.querySelectorAll("[id^='spNormalPrice_']");
+
+        roomPriceElements.forEach(function (element) {
+            let roomId = element.id.split('_')[1];
+            let roomPrice = parseInt(element.innerText, 10);
+            console.log("Room ID:", roomId, "Room Price:", roomPrice);
+
+            let noOfDaysElement = document.querySelector("#noOfDays_" + roomId);
+            noOfDaysElement.innerText = daysDifference;
+
+            let totalPrice = roomPrice * daysDifference;
+            let discountedPriceElement = document.querySelector("#spDiscountedPRice_" + roomId);
+
+            if (discountedPriceElement) {
+                let discountedPrice = parseInt(discountedPriceElement.innerText, 10);
+                discountedPriceElement.innerText = discountedPrice * daysDifference;
+            } else {
+                element.innerText = totalPrice;
+            }
+        });
+    });
+</script>*@
+

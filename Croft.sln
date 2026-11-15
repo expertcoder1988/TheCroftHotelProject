@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Croft", "Croft\Croft.csproj", "{8D7A378B-EFD7-413A-88C8-D641E9F14BB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D7A378B-EFD7-413A-88C8-D641E9F14BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7A378B-EFD7-413A-88C8-D641E9F14BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7A378B-EFD7-413A-88C8-D641E9F14BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7A378B-EFD7-413A-88C8-D641E9F14BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80ED3112-C4F2-4D60-BBD2-5818072AC922}
+	EndGlobalSection
+EndGlobal

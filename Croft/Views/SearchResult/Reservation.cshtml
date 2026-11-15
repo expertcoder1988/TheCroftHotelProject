@@ -1,0 +1,511 @@
+﻿@using Croft.Models;
+
+@{
+    ViewBag.Title = "Croft Hotel  at Naran | Rooms Booking";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Croft Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+
+    List<Croft.Controllers.PropertySearch> results = new List<Croft.Controllers.PropertySearch>();
+    Croft.Controllers.RoomDetails result = (Croft.Controllers.RoomDetails)ViewBag.room;
+
+    int? TotalAmount = 0;
+    List<Croft.Controllers.Pictures> roomPictures = (List<Croft.Controllers.Pictures>)TempData["roomPictures"];
+    //var pics = roomPictures.Select(x => x.title).ToList()
+    DateTime _CheckIn = DateTime.Now;
+    DateTime _CheckOut = DateTime.Now;
+    int? _RoomCatCode = 0;
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? _adultsRate = 0;
+    int? _childrenRate = 0;
+    int? roomPrice = 0;
+
+    int? _TotalPax = 0;
+
+    string _roomCateRoomNums = ViewBag.RoomCateRoomNums;
+    string RatePlanIDs = ViewBag.RatePlanIDs;
+    string RoomRates = ViewBag.RoomRates;
+    long TotalAmmount = ViewBag.TotalAmount;
+    long Taxes = ViewBag.TotalTax;
+    long AmountWithOutTaxes = TotalAmmount - Taxes;
+    long DiscountedAmount = AmountWithOutTaxes - (AmountWithOutTaxes * Taxes / 100);
+    long GrandTotal = AmountWithOutTaxes + Taxes;
+
+
+    List<Croft.Controllers.BookedRooms> brList = new List<Croft.Controllers.BookedRooms>();
+
+    string[] RoomCateRoomNums;
+    string _RoomCateRoomNums = ViewBag.RoomCateRoomNums;
+    //RoomCateRoomNums = _RoomCateRoomNums.Split(',');
+
+    string[] RoomCates;
+    string _rooomCate = ViewBag.RoomCatCodes;
+    // RoomCates = _rooomCate.Split(',');
+    string roomCate = "";
+    var db = new IconicDBEntities();
+
+    // if (RoomCates.Length > 0)
+    {
+        // for (int i = 0; i < RoomCates.Length; i++)
+        {
+            int rc = 0;
+            //if (RoomCates[i] != "")
+            {
+                rc = Convert.ToInt32(_rooomCate);
+
+                roomCate = db.RoomCategories.Where(x => x.Id == rc).Select(x => x.Category).FirstOrDefault();
+                Croft.Controllers.BookedRooms br = new Croft.Controllers.BookedRooms();
+
+                br.RoomCate = roomCate;
+                br.Quantity = Convert.ToInt32(_RoomCateRoomNums);
+
+                brList.Add(br);
+            }
+
+
+        }
+    }
+
+    if (Session["results"] != null)
+    {
+
+        _adults = ViewBag.Adults;
+        _children = ViewBag.Children;
+        _NoOfRooms = ViewBag.NoOfRooms;
+        results = (List<Croft.Controllers.PropertySearch>)Session["results"];
+
+        _TotalPax = _adults + _children;
+
+        if (_TotalPax == 0)
+        {
+            _TotalPax = 1;
+        }
+
+        TotalAmount = ViewBag.TotalAmount; ; //results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+                                             // string[] sDate = ViewBag.checkIn;
+                                             // string startDate = ViewBag.checkIn; // sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        //sDate = ViewBag.TotalAmount;
+        //string endDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        _CheckIn = ViewBag.checkIn; // Convert.ToDateTime(startDate);
+        _CheckOut = ViewBag.checkOut; // Convert.ToDateTime(endDate);
+                                      // _RoomCatCode = result.RoomCategoryId;
+
+
+    }
+    int totalDays = (int)(_CheckOut - _CheckIn).TotalDays;
+}
+
+<section class="innerpage-wrapper">
+    <div id="flight-booking" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-7 col-xl-8 content-side p-4" style="background-color:#f4f4f4">
+                    @using (Html.BeginForm("SaveBooking", "SearchResult", FormMethod.Post, new { @class = "needs-validation", id = "myForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="lg-booking-form-heading">
+
+                            <h3>Personal Information</h3>
+                        </div><!-- end lg-bform-heading -->
+
+                        <div class="personal-info">
+
+                            <div class="row">
+                                <div class="col-6 col-md-2">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <select class="form-control" name="PaxTitle" id="PaxTitle">
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Miss">Miss</option>
+                                        </select>
+                                    </div>
+                                </div><!-- end columns -->
+
+                                <div class="col-6 col-md-5">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" id="PaxFName" name="PaxFName" />
+                                    </div>
+                                </div><!-- end columns -->
+
+                                <div class="col-6 col-md-5">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" id="PaxLName" name="PaxLName" />
+                                    </div>
+                                </div><!-- end columns -->
+
+                            </div><!-- end row -->
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="email" class="form-control" id="PaxEmail" name="PaxEmail" />
+                                    </div>
+                                </div><!-- end columns -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" id="PaxPhoneNumber" name="PaxPhoneNumber" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Enter Voucher Code</label>
+                                        <input type="text" class="form-control" id="voucherCode" name="Code" />
+
+                                    </div>
+
+                                </div><!-- end columns -->
+                                <div class="col-md-6 mt-4">
+
+                                    <button type="button" class="btn btn-orange mt-2" onclick="applyVoucher()">Apply Voucher</button>
+                                    <button type="button" class="btn btn-danger mt-2" id="removeVoucherBtn" data-original-amount="Rs. @TotalAmmount" onclick="removeVoucher()">Removed Voucher</button>
+
+
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Write Message</label>
+                                        <textarea type="text" class="form-control" rows="2" id="PaxDescription" name="PaxDescription"></textarea>
+                                    </div>
+                                </div><!-- end columns -->
+                            </div>
+                            <hr class="mb-2">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="chk_agree" name="chk_agree"> By continuing, you are agree to the <a href="#" style="color:#0094ff">Terms and Conditions.</a></label>
+                            </div><!-- end checkbox -->
+                            <hr class="mb-2">
+                            @*<div class="row">
+
+                    <div class="col-md-6">
+                        <div c>
+                            <h5 class="mb-3">Payment</h5>
+
+                            <div class="">
+                                <input id="PaymentType1" name="PaymentType"
+                                       type="radio"
+                                       style="height: 16px; width: 16px;"
+                                       value="2"
+                                       required />Pay Now (10% Discount)
+                            </div>
+                            <div>
+                                <input id="PaymentType2" name="PaymentType"
+                                       type="radio"
+                                       style="height: 16px; width: 16px; font-size: 16px"
+                                       checked
+                                       value="1"
+                                       required />Pay Later
+                            </div>
+
+                        </div>
+                    </div>
+                </div>*@
+
+                            <input type="hidden" id="PaymentType" name="PaymentType" value="2" />
+
+                            <div class="payment-section">
+                                <h3 class="mb-3">Payment</h3>
+                                <div class="row position-relative">
+                                    <!-- Online Payment Card -->
+                                    <div class="col-md-6 col-sm-12 mb-3">
+                                        <div class="payment-card rounded p-4 h-100 selectable selected"
+                                             onclick="setPaymentType(this, 2)">
+                                            <div class="checkmark"><span class="text-white fw-bold">✓</span></div>
+                                            <h5 class="mb-3">Online Payment</h5>
+                                            <span class="form__label-text">
+                                                <img src="~/Content/Star/images/mastercard.svg" alt="MasterCard" style="width: 30px; height: 35px;">
+                                                <img src="~/Content/Star/images/visa.svg" alt="Visa Card" style="width: 30px; height: 35px;">
+                                                <img src="~/Content/Star/images/easypaisa.svg" alt="Easypaisa" style="width: 30px; height: 35px;">
+                                                <img src="~/Content/Star/images/jazzcash.svg" alt="JazzCash" style="width: 50px; height: 35px;">
+                                                <img src="~/Content/Star/images/upasia.svg" alt="UPaisa" style="width: 50px; height: 35px;">
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Deposit Card -->
+                                    <div class="col-md-6 col-sm-12 mb-3">
+                                        <div class="payment-card rounded p-4 h-100 selectable"
+                                             onclick="setPaymentType(this, 1)">
+                                            <div class="checkmark d-none"><span class="text-white fw-bold">✓</span></div>
+                                            <h5 class="mb-2">50% Deposit</h5>
+                                            <p class="text-muted mb-0">To confirm your booking.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- end personal-info -->
+                        <hr class="mb-2">
+                        <div class="col-md-12 text-center" id="result_msg"></div>
+
+                        <input type="hidden" name="CheckIn" value="@_CheckIn" />
+                        <input type="hidden" name="CheckOut" value="@_CheckOut" />
+                        <input type="hidden" name="RoomCatCode" value="@ViewBag.RoomCatCodes" />
+                        <input type="hidden" name="Adults" value="@_adults" />
+                        <input type="hidden" name="Children" value="@_children" />
+                        <input type="hidden" name="NoOfRooms" value="@_NoOfRooms" />
+                        <input type="hidden" name="RoomRate" value="@roomPrice" />
+                        <input type="hidden" name="Taxes" value="@Taxes" />
+                        <input type="hidden" name="AmountWithoutTaxes" value="@AmountWithOutTaxes" />
+                        <input type="hidden" name="TotalAmount" value="@TotalAmmount" />
+                        <input type="hidden" name="RoomCateRoomNums" value="@_roomCateRoomNums" />
+                        <input type="hidden" name="RatePlanIDs" value="@RatePlanIDs" />
+                        <input type="hidden" name="RoomRates" value="@RoomRates" />
+                        <input type="hidden" name="DiscountedAmount" value="@DiscountedAmount" />
+                        <input type="hidden" name="VoucherCode" id="hiddenVoucherCode" value="" />
+                        <input type="hidden" name="hdnTotalAmount" id="hdnTotalAmount" value="@ViewBag.TotalAmount" />
+                        <input type="hidden" name="hdnDiscountAmount" id="hdnDiscountAmount" value="@ViewBag.discountAmount" />
+                        <input type="hidden" name="hdnTotalTax" id="hdnTotalTax" value="@ViewBag.TotalTax" />
+
+
+                        <button type="submit" class="btn-lg btn-orange mt-2" name="submit" id="submit">Confirm Booking</button>
+                    }
+
+                </div><!-- end columns -->
+
+                <div class="col-12 col-md-12 col-lg-5 col-xl-4 side-bar right-side-bar">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <div class="side-bar-block detail-block style2 text-center">
+                                <div class="detail-img text-center">
+                                    <a href="#"><img src="../uploads/@ViewBag.RoomCategory.Picture" class="img-fluid" alt="detail-img" /></a>
+                                    <div class="detail-title">
+                                        <h4><a href="#">The Croft Family</a></h4>
+                                        <p>Naran</p>
+                                    </div><!-- end detail-title -->
+
+                                    <span class="detail-price"><h4 id="totalPriceCell1">Rs. @TotalAmmount <span>/  @totalDays nights</span></h4></span>
+                                </div><!-- end detail-img -->
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Rating</td>
+                                                <td>
+                                                    <div class="rating">
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star-o"></i></span>
+                                                    </div><!-- end rating -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check In</td>
+                                                <td>  @_CheckIn.ToShortDateString()</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check Out</td>
+                                                <td>@_CheckOut.ToShortDateString()</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Days:</td>
+                                                <td id="totalDays">@totalDays</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Room Type</td>
+                                                <td>@ViewBag.Category.Category</td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td>Guests</td>
+                                                    <td>@PaxName</td>
+                                                </tr>*@
+                                            <tr>
+                                                <td>Tax</td>
+                                                <td>@Taxes</td>
+                                            </tr>
+                                            <tr id="discountedPriceRow" style="display: none;">
+                                                <td>Discount Price</td>
+                                                <td id="discountedPriceCell">Rs. @DiscountedAmount</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Price</td>
+                                                <td id="totalPriceCell">Rs. @TotalAmmount</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div><!-- end table-responsive -->
+                            </div><!-- end side-bar-block -->
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end flight-booking -->
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var payNowRadioButton = document.getElementById('PaymentType1');
+        var payLaterRadioButton = document.getElementById('PaymentType2');
+        var totalPriceElement = document.getElementById('totalPriceCell');
+        var discountedPriceElement = document.getElementById('discountedPriceCell');
+        var discountedPriceRow = document.getElementById('discountedPriceRow');
+
+        // Initial values
+        var DiscountedAmount = @DiscountedAmount; // Fetch the discounted amount from your server-side code
+        var TotalAmount = @TotalAmmount; // Fetch the total amount from your server-side code
+
+        if (totalPriceElement && discountedPriceElement && discountedPriceRow) {
+            function updatePriceDisplay() {
+                if (payNowRadioButton.checked) {
+                    totalPriceElement.innerText = 'Rs. ' + DiscountedAmount; // Show discounted amount for Pay Now
+                    discountedPriceElement.innerText = 'Rs. ' + DiscountedAmount;
+                    discountedPriceElement.style.display = 'block';
+                    discountedPriceRow.style.display = 'table-row'; // Show discounted row
+                } else {
+                    totalPriceElement.innerText = 'Rs. ' + TotalAmount; // Show total amount for Pay Later
+                    discountedPriceElement.innerText = 'Rs. ' + 0;
+                    discountedPriceRow.style.display = 'table-row'; // Hide discounted row
+                }
+            }
+
+            // Initialize the display based on the default selected payment type
+            updatePriceDisplay();
+
+            // Event listeners for radio button change
+            payNowRadioButton.addEventListener('change', updatePriceDisplay);
+            payLaterRadioButton.addEventListener('change', updatePriceDisplay);
+        } else {
+            console.error("Element not found: totalPriceCell, discountedPriceCell, or discountedPriceRow");
+        }
+    });
+</script>
+
+<script>
+    var isVoucherApplied = false; // Flag to check if the voucher is already applied
+
+    let originalAmount = null; // Declare this globally
+
+    function applyVoucher() {
+        if (isVoucherApplied) {
+            alert('Voucher has already been applied.');
+            return;
+        }
+
+        var voucherCode = document.getElementById('voucherCode').value;
+        var totalAmountField = document.getElementById('totalPriceCell');
+        var totalAmountField1 = document.getElementById('totalPriceCell1');
+        var discountedAmountField = document.getElementById('discountedPriceCell');
+        var hiddenVoucherCodeField = document.getElementById('hiddenVoucherCode');
+
+        if (!totalAmountField || !totalAmountField1 || !discountedAmountField || !hiddenVoucherCodeField) {
+            console.error('One or more required fields are not found');
+            return;
+        }
+
+        // Store original amount only once
+        if (!originalAmount) {
+            originalAmount = totalAmountField.innerText;
+        }
+
+        $.ajax({
+            url: '/SearchResult/GetDiscountAmount',
+            type: 'POST',
+            data: { code: voucherCode },
+            success: function (response) {
+                if (response.success) {
+                    var totalAmount = parseFloat(totalAmountField.innerText.replace('Rs. ', '').replace(',', ''));
+                    var discountAmount = response.discountAmount;
+                    var newTotalAmount = totalAmount - discountAmount;
+
+                    discountedAmountField.innerText = 'Rs. ' + discountAmount;
+                    totalAmountField.innerText = 'Rs. ' + newTotalAmount;
+                    totalAmountField1.innerText = 'Rs. ' + newTotalAmount;
+                    document.getElementById('discountedPriceRow').style.display = 'table-row';
+
+                    isVoucherApplied = true;
+                    hiddenVoucherCodeField.value = voucherCode;
+                } else {
+                    alert('Invalid voucher code');
+                }
+            },
+            error: function () {
+                alert('An error occurred while applying the voucher code.');
+            }
+        });
+    }
+
+    function removeVoucher() {
+        var totalAmountField = document.getElementById('totalPriceCell');
+        var totalAmountField1 = document.getElementById('totalPriceCell1');
+        var hiddenVoucherCodeField = document.getElementById('hiddenVoucherCode');
+
+        if (!totalAmountField || !totalAmountField1 || !hiddenVoucherCodeField) {
+            console.error('One or more required fields are not found');
+            return;
+        }
+
+        if (!originalAmount) {
+            console.error('Original amount not stored.');
+            return;
+        }
+
+        totalAmountField.innerText = originalAmount;
+        totalAmountField1.innerText = originalAmount;
+        hiddenVoucherCodeField.value = '';
+        isVoucherApplied = false;
+
+        document.getElementById('discountedPriceRow').style.display = 'none';
+        document.getElementById('voucherIcon').innerHTML = '';
+        document.getElementById('applyVoucherBtn').disabled = false;
+        document.getElementById('removeVoucherBtn').disabled = true;
+        const applyBtn = document.getElementById('applyVoucherBtn');
+        applyBtn.innerHTML = '<span id="voucherIcon" style="margin-right: 8px;"></span>Apply';
+
+        originalAmount = null; // Reset
+    }
+
+
+</script>
+<script>
+    function calculateTotalDays() {
+        var checkIn = new Date('@_CheckIn.ToString("yyyy-MM-dd")');
+        var checkOut = new Date('@_CheckOut.ToString("yyyy-MM-dd")');
+        var timeDiff = Math.abs(checkOut.getTime() - checkIn.getTime());
+        var totalDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        return totalDays;
+    }
+
+    window.onload = function() {
+        var totalDays = calculateTotalDays();
+        document.getElementById("totalDays").textContent = totalDays;
+    };
+</script>
+<script>
+    function setPaymentType(element, value) {
+        // Set hidden input value
+        document.getElementById("PaymentType").value = value;
+
+        // Deselect all cards
+        document.querySelectorAll(".payment-card").forEach(card => {
+            card.classList.remove("selected");
+            card.querySelector(".checkmark").classList.add("d-none");
+        });
+
+        // Select the clicked card
+        element.classList.add("selected");
+        element.querySelector(".checkmark").classList.remove("d-none");
+    }
+</script>

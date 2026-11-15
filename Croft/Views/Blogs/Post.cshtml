@@ -1,0 +1,247 @@
+﻿@{
+    ViewBag.Title = "Post Page";
+    var blog = (List<Croft.Models.Post>)TempData["blog"];
+
+
+    ViewBag.Title = blog[0].Title;
+    ViewBag.Description = blog[0].MetaDescription;
+    ViewBag.Keywords = blog[0].Keywords;
+
+}
+<style>
+    .post-story-body a {
+        color: dodgerblue !important;
+    }
+    .post-story-body ul {
+        color: black !important;
+    }
+</style>
+
+<section class="page-cover back-size" id="cover-flight-grid-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">POST</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Blogs")">Blog</a></li>
+                    <li class="breadcrumb-item">Post</li>
+                </ul>
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+
+
+<section class="innerpage-wrapper">
+    <div id="tour-details" class="innerpage-section-padding">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-8 col-xl-8 content-side">
+
+                    <div>
+                        <div class="feature-slider">
+                            <div><img src="/Uploads/blog/@blog[0].DefaultImage" class="img-fluid" alt="blog" /></div>
+                        </div>
+                        <div class=" post-more">
+
+                            <div class="post-additional">
+                                @blog[0].PublishedDate By <a href="#">@blog[0].Author</a>.
+                            </div>
+
+                        </div>
+                        <div class="post-story-body">
+
+                            <p style="text-align:justify">
+
+                                <span style="font-family: Calibri, &quot;sans-serif&quot;;">
+                                    @Html.Raw(blog[0].Description)
+                                </span>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-12 col-md-12 col-lg-4 side-bar right-side-bar">
+
+                    <div class="sidebar">
+                        <!-- Popular posts start-->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="main-title-2">
+                                <h3 style="color:#fff">Popular Rooms</h3>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Delxue.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Deluxe</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.10000</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Executive.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Executive Suite</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.26000</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Executive Room.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Executive Room</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.14000</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Quad Room.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Quad Room</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.18000</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3 popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Triplet Room.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Triplet Room</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">Rs.16000</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex popular-posts-box">
+                                <a class="pr-3" href="#">
+                                    <img src="~/Content/Star/images/Presedential Suite.jpg"
+                                         alt="small-photo"
+                                         class="flex-shrink-0 me-3" />
+                                </a>
+                                <div class="detail align-self-center">
+                                    <h4>
+                                        <a href="#" class="a2">Presidential Suite</a>
+                                    </h4>
+                                    <div class="listing-post-meta" style="color:#fff">
+                                        Starting From | <a href="#">RS.34000</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Popular posts end-->
+                        <!-- Social media start -->
+                        <div class="sidebar-widget2 popular-posts">
+
+                            <div class="main-title-2">
+                                <h3 style="color:white">NARAN WEATHER</h3>
+                            </div>
+                            <div class="latest-tweet">
+                                <a class="weatherwidget-io" href="https://forecast7.com/en/34d9173d65/naran/" data-label_1="NARAN" data-label_2="WEATHER" data-theme="pure">MURREE WEATHER</a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="social-media sidebar-widget clearfix">
+                            <!-- Main Title 2 -->
+                            <div class="main-title-2">
+                                <h3 style="color:#fff"><span>Social</span> Media</h3>
+                            </div>
+                            <!-- Social list -->
+                            <ul class="social-list">
+                                <li>
+                                    <a href="https://www.facebook.com/  CROFTfamilycottages"
+                                       class="facebook-bg">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/  CROFTCottages1" class="twitter-bg">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.instagram.com/croftfamilycottagesnaran
+"
+                                       class="google-bg">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                @Html.Raw("<li><a href='https://www.youtube.com/@TheCroftFamilyCottagesNaran' class='youtube-bg'><i class='fa fa-youtube-play'></i></a></li>")
+
+
+                            </ul>
+                        </div>
+                        <!-- Social media end -->
+                    </div>
+
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end tour-detail -->
+</section>
+
+<script>
+    !(function (d, s, id) {
+        var js,
+            fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://weatherwidget.io/js/widget.min.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    })(document, "script", "weatherwidget-io-js");</script>

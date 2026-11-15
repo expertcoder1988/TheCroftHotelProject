@@ -1,0 +1,226 @@
+﻿
+@{
+
+    ViewBag.Title = "Iconic Hotel  at Naran | Room Details";
+    ViewBag.keywords = "Hotel at Naran";
+
+    ViewBag.Description = "Iconic Hotel  at Naran is the best place to stay. Our hotel in Naran Pakistan offers luxurious rooms, equipped with all the amenities. Book Online.";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //Croft.Models.RoomDetails results = new Croft.Models.RoomDetails();
+    //if (TempData.ContainsKey("room"))
+    //{
+    //    results = (Croft.Models.RoomDetails)TempData["room"];
+    //}
+
+    List<Croft.Controllers.PropertySearch> results = new List<Croft.Controllers.PropertySearch>();
+    Croft.Controllers.RoomDetails result = (Croft.Controllers.RoomDetails)ViewBag.room;
+
+    int? TotalAmount = 0;
+    List<Croft.Controllers.Pictures> roomPictures = (List<Croft.Controllers.Pictures>)TempData["roomPictures"];
+    //var pics = roomPictures.Select(x => x.title).ToList()
+    DateTime _CheckIn = DateTime.Now;
+    DateTime _CheckOut = DateTime.Now;
+    int? _RoomCatCode = 0;
+    int? _adults = 0;
+    int? _children = 0;
+    int? _NoOfRooms = 0;
+    int? _adultsRate = 0;
+    int? _childrenRate = 0;
+    int? roomPrice = 0;
+    int? _TotalAmount = 0;
+    int? _Discount = 0;
+
+    if (Session["results"] != null)
+    {
+        string Params = (string)Session["params"];
+        string[] p = Params.Split('&');
+        _adults = Convert.ToInt32(p[2]);
+        _children = Convert.ToInt32(p[3]);
+        _NoOfRooms = Convert.ToInt32(p[4]);
+        results = (List<Croft.Models.PropertySearch>)Session["results"];
+
+        _adultsRate = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.ExtraAdultPrice).FirstOrDefault();
+        _childrenRate = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.ExtraChildPrice).FirstOrDefault();
+        _TotalAmount = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+        _Discount = results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.Discount).FirstOrDefault();
+
+        if (_Discount == null)
+        {
+            _Discount = 0;
+        }
+        // if (_children > 0)
+        {
+            roomPrice = _TotalAmount - (_TotalAmount * _Discount / 100) + _adultsRate + _childrenRate;
+        }
+        //else
+        //{
+        //    roomPrice = _adultsRate;
+        //}
+
+        TotalAmount = roomPrice; //results.Where(x => x.RoomCateCode == result.RoomCategoryId).Select(x => x.TotalAmount).FirstOrDefault();
+        string[] sDate = p[0].Split('-');
+        string startDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        sDate = p[1].Split('-');
+        string endDate = sDate[1] + "/" + sDate[0] + "/" + sDate[2];
+
+        _CheckIn = Convert.ToDateTime(startDate);
+        _CheckOut = Convert.ToDateTime(endDate);
+        _RoomCatCode = result.RoomCategoryId;
+    }
+
+}
+
+<section class="innerpage-wrapper">
+    <div id="flight-booking" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-7 col-xl-8 content-side">
+                    <form class="lg-booking-form" id="frm_booking" name="frm_booking" method="post">
+                        <div class="lg-booking-form-heading">
+                            <span>1</span>
+                            <h3>Personal Information</h3>
+                        </div><!-- end lg-bform-heading -->
+
+                        <div class="personal-info">
+
+                            <div class="row">
+                                <div class="col-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" id="txt_name" name="txt_name" />
+                                    </div>
+                                </div><!-- end columns -->
+
+                                <div class="col-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" id="txt_last_name" name="txt_last_name" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="text" class="form-control dpd3" id="txt_dob" name="txt_dob" />
+                                    </div>
+                                </div><!-- end columns -->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id="txt_country" name="txt_country" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="email" class="form-control" id="txt_email" name="txt_email" />
+                                    </div>
+                                </div><!-- end columns -->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" id="txt_phone" name="txt_phone" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Permanent Address</label>
+                                        <textarea type="text" class="form-control" rows="2" id="txt_address" name="txt_address" /></textarea>
+                                    </div>
+                                </div><!-- end columns -->
+                            </div>
+                        </div><!-- end personal-info -->
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="chk_agree" name="chk_agree"> By continuing, you are agree to the <a href="#" style="color:#0094ff">Terms and Conditions.</a></label>
+                        </div><!-- end checkbox -->
+                        <div class="col-md-12 text-center" id="result_msg"></div>
+                        <button type="submit" class="btn btn-orange" name="submit" id="submit">Confirm Booking</button>
+                    </form>
+
+                </div><!-- end columns -->
+
+                <div class="col-12 col-md-12 col-lg-5 col-xl-4 side-bar right-side-bar">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <div class="side-bar-block detail-block style2 text-center">
+                                <div class="detail-img text-center">
+                                    <a href="#"><img src="~/Content/Star/images/Croft.png" class="img-fluid" alt="detail-img" /></a>
+                                    <div class="detail-title">
+                                        <h4><a href="#">The Croft Family</a></h4>
+                                        <p>Naran</p>
+                                    </div><!-- end detail-title -->
+
+                                    <span class="detail-price"><h4>Rs.10000 <span>/ night</span></h4></span>
+                                </div><!-- end detail-img -->
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Rating</td>
+                                                <td>
+                                                    <div class="rating">
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star-o"></i></span>
+                                                    </div><!-- end rating -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check In</td>
+                                                <td>20-05-2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check Out</td>
+                                                <td>25-05-2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Duration</td>
+                                                <td>4 Nights</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Room Type</td>
+                                                <td>Deluxe</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Guests</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tax</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Totel Price</td>
+                                                <td>Rs.15000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- end table-responsive -->
+                            </div><!-- end side-bar-block -->
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end flight-booking -->
+</section><!-- end innerpage-wrapper -->

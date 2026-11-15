@@ -1,0 +1,407 @@
+﻿@{
+    ViewBag.Title = "Croft Family Cottages Naran Gallery |Explore Hotel Pictures";
+    ViewBag.keywords = "Naran hotel, hotel gallery, hotel room photos, hotel food photos, hotel reception photos";
+    ViewBag.canonical = "https://thecroftcottages.com/naran-hotel-pictures";
+    ViewBag.Description = "Immerse yourself in the beauty of Croft Family Cottages in Naran with our hotel pictures gallery. Explore serene views of the Naran Valley.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Set "All" as active by default
+        $(".btn[data-filter='all']").addClass("active").css({ "background-color": "white", "color": "black" });
+
+        $(".btn").click(function () {
+            var value = $(this).attr("data-filter");
+
+            if (value == "all") {
+                $(".filter").show("1000");
+            } else {
+                $(".filter").not("." + value).hide("3000");
+                $(".filter").filter("." + value).show("3000");
+            }
+
+            // Toggle active class and style
+            $(".btn").removeClass("active").css({ "background-color": "", "color": "" });
+            $(this).addClass("active").css({ "background-color": "white", "color": "black" });
+        });
+    });
+</script>
+
+
+
+
+<section class="page-cover back-size" id="cover-flight-grid-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">GALLERY</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li class="breadcrumb-item">Gallery</li>
+                </ul>
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+
+
+<!--===== INNERPAGE-WRAPPER ====-->
+<section class="innerpage-wrapper">
+    <div id="gallery-page" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="page-heading">
+                        <h1>Explore Our Captivating Naran Retreat </h2><h2> Hotel Pictures Gallery</h1>
+                        <hr class="heading-line">
+                        <blockquote>Welcome to our visual journey through the hotel pictures of the enchanting world of Croft Family Cottages in Naran. Immerse yourself in the beauty and charm of our accommodation with a curated selection of hotel pictures that showcase the tranquillity, comfort, and picturesque surroundings that await you. Embark on a visual journey through our hotel pictures gallery and let the captivating images paint a vivid picture of the unparalleled experience that awaits you at Croft Family Cottages in Naran.</blockquote>
+
+                    </div><!-- end page-heading -->
+                    
+                </div><!-- end row -->
+
+
+                <br />
+                <ul class="row ml-1">
+                    <li class="btn btn-padding btn-orange mr-1" data-filter="all" style="border :1px solid #000">All</li>
+                    <li data-filter="Ho" class="btn btn-padding btn-orange mr-1" style="border :1px solid #000">HOTEL</li>
+                    <li data-filter="Dx" class="btn btn-padding btn-orange mr-1" style="border :1px solid #000">Deluxe Room</li>
+                    <li data-filter="Ex" class="btn btn-padding btn-orange mr-1" style="border :1px solid #000">Executive Room</li>
+                    <li data-filter="Rs" class="btn btn-padding btn-orange mr-1" style="border :1px solid #000">RESTAURANT</li>
+
+                </ul>
+
+
+                <div class="row">
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Dx">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/croftpic.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Deluxe Room</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-1.jpg" title="image-1" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Ho">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/croftpic3.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Hotel</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-2.jpg" title="image-2" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Rs">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/2.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>RESTAURANT</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-3.jpg" title="image-3" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Ex">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/room.png" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Executive Room</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-4.jpg" title="image-4" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Ex">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/room4.png" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Executive Room</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-5.jpg" title="image-5" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Ex">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/room2.png" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Executive Room</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-6.jpg" title="image-6" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Rs">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/2.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>RESTAURANT</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-3.jpg" title="image-3" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Dx">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/croftpic.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Deluxe Room</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-1.jpg" title="image-1" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                    <div class="gallery-product col-12 col-md-6 col-lg-4 col-xl-4 filter Ho">
+                        <div class="gallery-block">
+                            <div class="gallery-img ">
+                                <img src="~/Content/Star/images/croftpic3.jpg" class="img-fluid" alt="gallery-img">
+                                <div class="gallery-mask">
+                                    <div class="gallery-title">
+                                        <h2>Hotel</h2>
+
+                                    </div>  <!-- end gallery-title -->
+                                    <a href="~/Content/Star/images/gallery-2.jpg" title="image-2" class="with-caption image-link"><span><i class="fa fa-arrows-v"></i></span></a>
+                                </div><!-- end gallery-mask -->
+                            </div><!-- end gallery-img -->
+                        </div><!-- end gallery-block -->
+                    </div><!-- end gallery-product -->
+
+                </div><!-- end row -->
+
+
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+    
+</section><!-- end innerpage-wrapper -->
+
+
+<section id="car-offers" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+            
+                <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-car-offers">
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/interior.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Serene Bedrooms:</h4>
+
+                                        <p style="color:#000000">
+                                            Indulge in the allure of our cosy and elegantly designed bedrooms. The gallery captures the essence of comfort and relaxation, inviting you to experience peaceful nights surrounded by the breathtaking landscapes of Naran.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/scenic views.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Scenic Views:</h4>
+
+                                        <p style="color:#000000">
+                                            Marvel at the stunning vistas that unfold from our cottages. The gallery highlights the panoramic views of the Naran Valley, providing a glimpse of the natural wonders that surround our retreat.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/interior (1).jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Charming Interiors:</h4>
+
+                                        <p style="color:#000000">
+                                            Step inside our cottages and witness the warmth of rustic interiors blended seamlessly with modern amenities. Our gallery showcases the thoughtful details that make each space a welcoming haven.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/greenery.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Lush Greenery:</h4>
+
+                                        <p style="color:#000000">
+                                            Explore the lush green surroundings that envelop Croft Family Cottages. The gallery captures the beauty of our gardens, offering a retreat into nature's embrace.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/out door spaces.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Outdoor Spaces:</h4>
+
+                                        <p style="color:#000000">
+                                            Discover the inviting outdoor spaces designed for relaxation. From cosy seating areas to open terraces, our gallery reflects the diverse options for unwinding amidst the refreshing ambiance.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/family friendly.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Family-Friendly Amenities:</h4>
+
+                                        <p style="color:#000000">
+                                            Experience the family-friendly features that make Croft Family Cottages the perfect choice for a memorable getaway. The gallery highlights recreational spaces and facilities designed to cater to every member of the family.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block car-offer-block">
+                            <div class="main-img car-offer-img">
+                                <a href="car-detail-right-sidebar.html">
+                                    <img src="~/Content/Star/images/dining.jpg" class="img-fluid" alt="car-img" />
+                                </a>
+                            </div><!-- end car-offer-img -->
+
+                            <div class="car-offer-info">
+                                <ul class="list-unstyled">
+                                    <li>
+
+                                        <h4 style="color:#000000">Dining Delights:</h4>
+
+                                        <p style="color:#000000">
+                                            Delve into images of our dining areas, where delectable meals are served against the backdrop of scenic beauty. Our gallery offers a taste of the culinary experiences that await you.
+                                        </p>
+
+                                    </li>
+                                </ul>
+                            </div><!-- end car-offer-info -->
+                        </div><!-- end car-offer-block -->
+                    </div><!-- end item -->
+
+
+
+                </div><!-- end owl-car-offers -->
+
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end car-offers -->

@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Payment Gateway Error";
+}
+
+
+<style>
+    .Ewrapper {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background-image: url(/Content/Star/images/errorpp.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+    }
+
+
+
+    .btn-container {
+        margin-top: 20px;
+    }
+
+        .btn-container a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border: 2px solid #183f3e;
+            color: #183f3e;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+            .btn-container a:hover {
+                background-color: #183f3e;
+                color: #fff;
+            }
+
+    .overlay-error-text {
+        position: absolute;
+        top: 20%;
+        right: 12%;
+        text-align: center;
+        z-index: 3;
+    }
+
+        .overlay-error-text h1 {
+            font-size: 72px;
+            margin: 0;
+            color: #183f3e;
+        }
+
+        .overlay-error-text p {
+            font-size: 20px;
+            color: #444;
+            margin: 10px 0 30px 0;
+        }
+
+    @@media (max-width: 768px) {
+        .Ewrapper {
+            flex-direction: column;
+            background-position: center;
+            min-height: 80vh;
+            background-image: url(/Content/Star/images/errormo.png);
+        }
+
+        .error-box {
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .overlay-error-text h1 {
+            font-size: 40px;
+            margin: 0;
+            color: #183f3e;
+        }
+
+        .overlay-error-text {
+            justify-content: center;
+            text-align: center;
+            /* padding: 0px 0px; */
+            align-items: center;
+            display: contents;
+        }
+    }
+</style>
+
+<div class="Ewrapper">
+    <div class="overlay-error-text">
+        <div class="error-content">
+            <h1>Payment Error</h1>
+            <p>Looks like something went wrong.<br />We’re working on it.</p>
+            <div class="btn-container">
+                <a href="@Url.Action("Index","Home")">Try Again</a>
+                <a href="tel:+923128888443">Contact us</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,561 @@
+﻿@{
+    ViewBag.Title = "Croft Family Cottages in Naran – Naran Kaghan’s Best Hotel";
+    ViewBag.keywords = "hotel in Naran, best family hotel in Naran, hotel prices in Naran, Naran hotel booking, Naran hotel contact number, hotel booking in Naran, Naran hotel rent, hotel rent in Naran kaghan, hotel prices in Naran";
+    ViewBag.canonical = "https://thecroftcottages.com";
+    ViewBag.Description = "Discover comfort at The Croft Family Cottages in Naran. Immerse yourself in luxury hotel in Naran Kaghan. Best hotel rates with online hotel booking in Naran.";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<!-- end flexslider-container -->
+
+
+
+<section class="innerpage-wrapper">
+    <div id="hotel-listing" class="innerpage-section-padding">
+        <div class="container">
+            <div class="page-heading">
+                <h2 style="font-weight:700;font-size:36px">
+                    Discover Serenity at Your Accommodation in Naran
+                </h2>
+                <hr class="heading-line" />
+                <blockquote>
+                    Immerse yourself in the embrace of our meticulously crafted cottages in Naran,
+                    where each nook embodies a seamless blend of traditional allure and modern luxury.
+                    Every cottage and hotel room is furnished with state-of-the-art conveniences,
+                    ensuring a homely feel against the backdrop of Naran's awe-inspiring vistas.
+
+                    At Croft Family Cottages Naran, we offer a range of thoughtfully designed rooms with a view that provide
+                    a perfect blend of comfort and tranquility, ensuring an unforgettable stay amidst the breathtaking beauty of Naran.
+                </blockquote>
+            </div><!-- end page-heading -->
+
+
+
+            <div class="row">
+                <div class=" col-xl-6">
+                    <div class="list-block main-block h-list-block">
+                        <div class="list-content">
+
+
+                            <div class="main-img list-img f-list-img">
+
+                                <a>
+                                    <img src="~/Content/Star/images/room1.jpg" class="img-fluid" alt="hotel-img" />
+                                </a>
+
+                            </div><!-- end f-list-img -->
+
+
+                            <div class="list-info h-list-info">
+                                <h3 class="block-title"><a href="#">Deluxe Room</a></h3>
+
+                                <style>
+                                    .facilities-list {
+                                        list-style: none;
+                                        padding: 0;
+                                    }
+
+                                        .facilities-list li {
+                                            font-size: 10px;
+                                        }
+
+                                            .facilities-list li i {
+                                                margin-right: 5px; /* Add space between the icon and the text if needed */
+                                            }
+                                </style>
+
+                                <ul class="facilities-list fl-2 clearfix">
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>PARKING INCLUDED</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>BREAKFAST INCLUDED</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>WIFI</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>PRIVATE SITTING AREA</span>
+                                    </li>
+                                </ul>
+
+                                <a href="#" onclick="SearchResults()" class="btn btn-orange btn-lg">Search Dates</a>
+                            </div><!-- end h-list-info -->
+                        </div><!-- end list-content -->
+                    </div><!-- end h-list-block -->
+                </div>
+                <div class=" col-xl-6">
+                    <div class="list-block main-block h-list-block">
+                        <div class="list-content">
+
+
+                            <div class="main-img list-img f-list-img">
+
+                                <a>
+                                    <img src="~/Content/Star/images/room2.png" class="img-fluid" alt="hotel-img" />
+                                </a>
+
+                            </div><!-- end f-list-img -->
+
+                            <div class="list-info h-list-info">
+                                <h3 class="block-title"><a href="#">Executive Room</a></h3>
+
+                                <ul class="facilities-list fl-2 clearfix">
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>PARKING INCLUDED</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>BREAKFAST INCLUDED</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>WIFI</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-check-circle"></i>
+                                        <span>BALCONY</span>
+                                    </li>
+                                </ul>
+
+                                <a href="#" onclick="SearchResults()" class="btn btn-orange btn-lg">Search Dates</a>
+                            </div><!-- end h-list-info -->
+                        </div><!-- end list-content -->
+                    </div><!-- end h-list-block -->
+                </div>
+
+            </div>
+
+        </div><!-- end row -->
+
+    </div><!-- end hotel-listing -->
+</section>
+
+
+<section id="luxury-car" class="innerpage-section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-r luxury-img">
+                <img src="/Content/Star/images/HOTEL CROFT.jpg" class="img-fluid" alt="luxury-car" />
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-l luxury-text">
+                <div class="luxury-car-text">
+                    <p style="font-weight:bold">Discover the Tranquility </p>
+                    <h2>Water Stream at Croft Family Cottages Naran </h2>
+                    <p>
+                        Indulge your senses in the tranquil beauty of our small water stream, a hidden gem nestled within the grounds of Croft Family <b><a  href="https://thecroftcottages.com/post/2/discover-best-cottages-in-naran">Cottages in Naran Valley </a></b>. Take a leisurely stroll along its banks, listening to the gentle babble of the water as it meanders through the lush greenery. Whether you're enjoying a morning coffee by the stream or unwinding with a book in the afternoon sun, the small water stream offers a peaceful sanctuary where you can escape the hustle and bustle of everyday life.
+                    </p>
+
+                </div>
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+    <!-- end luxury-car -->
+
+</section>
+
+
+<!--=============== HOTEL OFFERS ===============-->
+<section id="hotel-offers" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-heading white-heading">
+                    <h2>
+                        Embark on an Adventure
+                    </h2>
+
+                    <h2>
+                        Discover Popular Attractions in Naran
+                    </h2>
+
+                    <blockquote style="color:white">
+                        Ideally situated near Naran's iconic attractions, our cottages serve as the perfect Launchpad for exploring the marvels of this enchanting valley. From the famed Saif-ul-Mulook Lake to the pristine Ansoo Lake, every landmark is easily accessible, enabling you to make the most of your Naran escapade. Nestled in the heart of nature, Croft Family Cottages offers not only a serene retreat but also easy access to some of the most enchanting attractions in Naran. Immerse yourself in the beauty of the surroundings and explore these must-visit places just a stone's throw away.
+                    </blockquote>
+                    <hr class="heading-line" />
+                </div><!-- end page-heading -->
+
+                <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-hotel-offers">
+
+                    <div class="item">
+                        <div class="main-block hotel-block">
+                            <div class="main-img">
+                                <img src="~/Content/Star/images/saif-ul-muluk-lake.jpg" class="img-fluid" alt="hotel-img" />
+                            </div><!-- end offer-img -->
+
+                            <div class="main-info hotel-info">
+                                <div class="arrow">
+                                    <a href="https://maps.app.goo.gl/boNv2A8q8ddCUgr2A"><span><i class="fa fa-angle-right"></i></span></a>
+                                </div><!-- end arrow -->
+
+                                <div class="hotel-title">
+                                    <a style="color: black; font-weight: bold;" href="https://maps.app.goo.gl/boNv2A8q8ddCUgr2A">Saif-ul-Mulook Lake - A Majestic Oasis</a>
+                                    <p>Step into the realm of fairytales with a visit to Saif-ul-Mulook Lake. Surrounded by towering peaks, this pristine lake is a visual spectacle. Whether you're up for a boat ride or simply wish to bask in its ethereal beauty, Saif-ul-Mulook promises an enchanting experience.</p>
+                                </div><!-- end hotel-title -->
+                            </div><!-- end hotel-info -->
+                        </div><!-- end hotel-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block hotel-block">
+                            <div class="main-img">
+
+                                <img src="~/Content/Star/images/Shogran.jpg" class="img-fluid" alt="hotel-img" />
+
+
+                            </div><!-- end offer-img -->
+
+                            <div class="main-info hotel-info">
+                                <div class="arrow">
+                                    <a href="https://maps.app.goo.gl/jMko2MvLvK76TXMQA"><span><i class="fa fa-angle-right"></i></span></a>
+                                </div><!-- end arrow -->
+
+                                <div class="hotel-title">
+                                    <a style="color: black; font-weight: bold;" href="https://maps.app.goo.gl/jMko2MvLvK76TXMQA">Shogran - Meadows of Blisss</a>
+                                    <p>Just a scenic drive away, Shogran welcomes you with its lush meadows and panoramic views. Take a stroll through the meadows, breathe in the crisp mountain air, and let the beauty of Shogran captivate your senses.</p>
+                                    <br />
+                                </div><!-- end hotel-title -->
+                            </div><!-- end hotel-info -->
+                        </div><!-- end hotel-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block hotel-block">
+                            <div class="main-img">
+
+                                <img src="~/Content/Star/images/Lalazar.jpg" class="img-fluid" alt="hotel-img" />
+
+
+                            </div><!-- end offer-img -->
+
+                            <div class="main-info hotel-info">
+                                <div class="arrow">
+                                    <a href="https://maps.app.goo.gl/kdN8u3Cs4e82kd9v5"><span><i class="fa fa-angle-right"></i></span></a>
+                                </div><!-- end arrow -->
+
+                                <div class="hotel-title">
+                                    <a style="color: black; font-weight: bold;" href="https://maps.app.goo.gl/kdN8u3Cs4e82kd9v5">Lalazar - Nature's Canvas</a>
+                                    <p>A short journey to Lalazar unfolds a canvas painted with vibrant hues of nature. Situated at an altitude that offers breathtaking views, Lalazar is a perfect spot for nature lovers and photographers alike.</p>
+                                    <br /><br />
+                                </div>
+                            </div><!-- end hotel-info -->
+                        </div><!-- end hotel-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block hotel-block">
+                            <div class="main-img">
+
+                                <img src="~/Content/Star/images/kaghan.jpg" class="img-fluid" alt="hotel-img" />
+
+
+                            </div><!-- end offer-img -->
+
+                            <div class="main-info hotel-info">
+                                <div class="arrow">
+                                    <a href="https://maps.app.goo.gl/RVAV22kXQmhJ3zxUA"><span><i class="fa fa-angle-right"></i></span></a>
+                                </div><!-- end arrow -->
+
+                                <div class="hotel-title">
+                                    <a style="color: black; font-weight: bold;" href="https://maps.app.goo.gl/RVAV22kXQmhJ3zxUA">Kaghan Valley - A Tranquil Haven</a>
+                                    <p>Explore the nearby Kaghan Valley, a tranquil haven adorned with flowing rivers and lush greenery. Take a leisurely drive through the valley, stopping to marvel at the cascading waterfalls and charming villages along the way.</p>
+                                    <br />
+                                </div>
+                            </div><!-- end hotel-info -->
+                        </div><!-- end hotel-block -->
+                    </div><!-- end item -->
+
+                    <div class="item">
+                        <div class="main-block hotel-block">
+                            <div class="main-img">
+
+                                <img src="~/Content/Star/images/naran-bazar.jpg" class="img-fluid" alt="hotel-img" />
+
+
+                            </div><!-- end offer-img -->
+
+                            <div class="main-info hotel-info">
+                                <div class="arrow">
+                                    <a href="https://maps.app.goo.gl/mbPaBSEcWjZm88y76"><span><i class="fa fa-angle-right"></i></span></a>
+                                </div><!-- end arrow -->
+
+                                <div class="hotel-title">
+                                    <a style="color: black; font-weight: bold;" href="https://maps.app.goo.gl/mbPaBSEcWjZm88y76">Naran Bazaar - Local Delights</a>
+                                    <p>Experience the local culture at Naran Bazaar, where you can shop for traditional handicrafts, souvenirs, and savor local delicacies. The bustling market adds a touch of vibrancy to your Naran excursion.</p>
+                                    <br />
+                                </div>
+                            </div><!-- end hotel-info -->
+                        </div><!-- end hotel-block -->
+                    </div>
+                </div><!-- end owl-hotel-offers -->
+                <div class="view-all text-center">
+                    <a href="https://thecroftcottages.com/activities-in-naran-tourist-places" class="btn btn-w-border">View All</a>
+                </div><!-- end view-all -->
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end hotel-offers -->
+<!--=============== LUXURY ROOMS ===============-->
+
+<section id="luxury-car" class="innerpage-section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-r luxury-img">
+                <img src="/Content/Star/images/horse.jpg" class="img-fluid" alt="luxury-car" />
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-l luxury-text">
+                <div class="luxury-car-text">
+                    <h2>Things to Do in Naran for Every Adventurer</h2>
+                    <p>
+                        Situated in the heart of Naran Valley, Croft Family Cottages serves as the perfect base for exploring the natural wonders of the region. From exhilarating trekking adventures to serene nature walks, there's no shortage of outdoor activities to enjoy during your stay. And after a day of adventure, you can unwind and relax in the tranquil surroundings of our hotel in Naran taking in the breathtaking views of the surrounding mountains.
+                    </p>
+
+                </div>
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+    <!-- end luxury-car -->
+    <section id="luxury-car" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-r luxury-text">
+                    <div class="luxury-car-text">
+                        <h2>
+                            Stay Informed, Explore Naran
+                            Your Guide to the <b><a href="/naran-valley-updates">Latest Updates</a></b>
+                        </h2>
+                        <p>
+                            Our blog keeps you in the loop with the latest events, hidden gems, and insider tips for exploring the Naran Kaghan Valley. From cultural festivals, hotels in Naran to new trails and local cuisine recommendations, our updates ensure your stay is not just comfortable but also enriched with the magic of this Himalayan haven. Explore Naran Valley with our informative insights.
+                        </p>
+
+                    </div>
+                </div><!-- end columns -->
+                <div class="col-12 col-md-12 col-lg-6 col-xl-6 no-pd-l luxury-img">
+                    <img src="/Content/Star/images/naran.jpg" class="img-fluid" alt="luxury-car" />
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+</section>
+
+
+<div id="myModal" class="modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog mll">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header2">
+                <button type="button" id="closemodal" class="close" data-dismiss="modal">×</button>
+                <h4 class="title">Check Availability</h4>
+            </div>
+            <form action="/home/propertysearchmod" method="post">
+                <input name="__RequestVerificationToken" type="hidden" value="LOxKNogWfPze2705NK8dSmu3ctqOfQnucKdP_RgRz-ogMkk8lr1ubF-JBKWLpDWCp5JWt1T8AiD09FImkrlaQvX4IaqeYQ58utjDWTamqO01">
+                <div class="modal-body">
+
+                    <div class="search-area-inner">
+                        <div class="search-contents">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input ID="CheckInM"
+                                               name="CheckInM"
+                                               required
+                                               type="text"
+                                               autocomplete="off"
+                                               PlaceHolder="Check In Date"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input ID="CheckOutM"
+                                               name="CheckOutM"
+                                               required
+                                               type="text"
+                                               autocomplete="off"
+                                               PlaceHolder="Check Out Date"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="Adults" name="Adults" class="form-control" data-live-search="true" data-live-search-placeholder="Search value">
+                                            <option selected="" value="0">Adults</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="Children" name="Children" class="form-control" data-live-search="true" data-live-search-placeholder="Search value">
+                                            <option selected="" value="0">Children</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="10">11</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="NoOfRooms" name="NoOfRooms" class="form-control" data-live-search="true" data-live-search-placeholder="Search value">
+                                            <option selected="" value="0">No. Of Rooms</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-dark" style="width:100%" value="Search">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Handle click event on "SELECT THIS ROOM" link
+        $(".select-txt a").on("click", function (e) {
+            e.preventDefault(); // Prevent the default behavior of the anchor tag
+            $("#myModal").css("display", "block"); // Show the modal
+        });
+
+        // Handle click event on the modal close button
+        $("#closemodal").on("click", function () {
+            $("#myModal").css("display", "none"); // Hide the modal
+        });
+
+        // Handle click event outside the modal to close it
+        $(window).on("click", function (e) {
+            if (e.target === $("#myModal")[0]) {
+                $("#myModal").css("display", "none"); // Hide the modal
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Handle click event on "Search Dates" button
+        $(".btn-orange.btn-lg").on("click", function (e) {
+            e.preventDefault(); // Prevent the default behavior of the button
+            $("#myModal").css("display", "block"); // Show the modal
+        });
+
+        // Handle click event on the modal close button
+        $("#closemodal").on("click", function () {
+            $("#myModal").css("display", "none"); // Hide the modal
+        });
+
+        // Handle click event outside the modal to close it
+        $(window).on("click", function (e) {
+            if (e.target === $("#myModal")[0]) {
+                $("#myModal").css("display", "none"); // Hide the modal
+            }
+        });
+    });
+</script>
+
+<script>
+    var $j = jQuery.noConflict();
+    $j(document).ready(function () {
+        $j("#CheckInM").datepicker({
+            minDate: new Date(), // Set minDate to the current date
+            onSelect: function (selectedDate) {
+                // Set minDate for #CheckOutM based on selectedDate in #CheckInM
+                $j("#CheckOutM").datepicker("option", "minDate", selectedDate);
+            }
+        });
+    });
+</script>
+<script>
+    var $j = jQuery.noConflict();
+    $j(document).ready(function () {
+        $j("#CheckOutM").datepicker({
+            minDate: new Date() // Set minDate to the current date
+        });
+    });
+</script>
+
+@*<script>
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            $j("#CheckOutM").datepicker({
+                minDate: new Date() // Set minDate to the current date
+            });
+        });
+    </script>
+
+    <script>
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            $j("#CheckInM").datepicker({
+                minDate: new Date(), // Set minDate to the current date
+                onSelect: function (selectedDate) {
+                    // Set minDate for #CheckOutM based on selectedDate in #CheckInM
+                    $j("#CheckOutM").datepicker("option", "minDate", selectedDate);
+                }
+            });
+        });
+    </script>*@   

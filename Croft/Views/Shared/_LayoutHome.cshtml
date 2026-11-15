@@ -1,0 +1,1047 @@
+﻿﻿@{
+    var blogs = new HotelWebsite.Controllers.BlogsController().GetAllBlogs();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="Keyword" content="@ViewBag.keywords" />
+    <meta name="description" content="@ViewBag.Description" />
+
+    <meta property=og:title content="The Croft Family Cottages" />
+    <meta property=og:url content="https://thecroftcottages.com/" />
+    <meta property="og:image" content="https://thecroftcottages.com/Content/Star/images/logo.png" />
+    <meta property=og:type content=website />
+    <meta property=og:description content="Discover a haven of luxury at The Croft Family Cottages in Naran Kaghan Valley. Renowned as one of the premier hotels in Naran Main Bazar, indulge in lavish accommodations amidst the stunning beauty of the surrounding landscapes." />
+    <meta property=og:locale content=en_US />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="~/Content/Star/css/bootstrap-4.4.1.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Star/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/Content/Star/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Star/css/style.css">
+    <link rel="stylesheet" id="cpswitch" href="~/Content/Star/css/orange.css">
+    <link rel="stylesheet" href="~/Content/Star/css/responsive.css">
+
+    <link rel="stylesheet" href="~/Content/Star/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/Star/css/owl.theme.css">
+
+    <link rel="stylesheet" href="~/Content/Star/css/magnific-popup.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="/Content/Star/images/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="@ViewBag.canonical" />
+    @*<base href="https://thecroftcottages.com/">*@
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "Hotel",
+            "name": "The Croft Family Cottages",
+            "description": "Discover a haven of luxury at The Croft Family Cottages in Naran Kaghan Valley. Renowned as one of the premier hotels in Naran Main Bazar, indulge in lavish accommodations amidst the stunning beauty of the surrounding landscapes.",
+            "address": {
+                "@@type": "PostalAddress",
+                "addressCountry": "Pakistan",
+                "addressLocality": "Naran",
+                "addressRegion": "Mansehra",
+                "postalCode": "21200",
+                 "streetAddress": "The Croft Family Cottages, jheel road, Katha, Naran, Mansehra, Khyber Pakhtunkhwa, Pakistan"
+            },
+            "telephone": "+92 3128888443",
+            "photo": "https://thecroftcottages.com/Content/Star/images/logo.png",
+            "starRating": {
+                "type": "Rating",
+                "ratingValue": "3"
+            },
+            "priceRange": "$50 - $150"
+        }
+    </script>
+
+    <style>
+        @@media (max-width: 724px) {
+            .infobar {
+                display: none;
+            }
+        }
+
+        .float {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            right: 10px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .floatp {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 70px;
+            right: 10px;
+            background-color: #25d366;
+            color: #fff;
+            background-color: black;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SNVE7F24M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8SNVE7F24M');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16583951673"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-16583951673');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W6R79B2D');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body id="hotel-homepage">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6R79B2D"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="wrapper">
+
+        <!--====== LOADER =====-->
+        <div class="loader"></div>
+
+        <!--======== SEARCH-OVERLAY =========-->
+        <div id="myOverlay" class="overlay">
+            <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+            <div class="overlay-content">
+
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="float-left" type="text" placeholder="Search.." name="search">
+                            <button class="float-left" type="submit"><i class="fa fa-search"></i></button>
+                        </div><!-- end input-group -->
+                    </div><!-- end form-group -->
+                </form>
+
+            </div><!-- end overlay-content -->
+        </div><!-- end overlay -->
+        <!--============= TOP-BAR ===========-->
+        <div id="top-bar" class="tb-text-grey ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div id="info" class="infobar">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a href="https://maps.app.goo.gl/BuxBAeNMr69RkfMw8">
+                                        <span>
+                                            <i class="fa fa-map-marker"></i>
+                                        </span>jheel road, Katha, Naran, Mansehra, Khyber Pakhtunkhwa
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="tel:+923128888443">
+                                        <span><i class="fa fa-phone"></i></span>03128888443
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- end info -->
+                    </div><!-- end columns -->
+                    <div class="col-12 col-md-6">
+                        <div id="links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                <li class="list-inline-item"><a href="https://www.instagram.com/croftfamilycottagesnaran/"><span><i class="fa fa-instagram"></i></span></a></li>
+                                <li class="list-inline-item"><a href="https://www.facebook.com/croftfamilycottages"><span><i class="fa fa-facebook"></i></span></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/CroftCottages1"><span><i class="fa fa-twitter"></i></span></a></li>
+                                @Html.Raw("<li class='list-inline-item'><a href='https://www.tiktok.com/@thecroftcottages' ><span><i class='fab fa-tiktok'></i></span></a></li>")
+
+                                @Html.Raw("<li class='list-inline-item'><a href='https://www.youtube.com/@TheCroftFamilyCottagesNaran'><span><i class='fa fa-youtube-play'></i></span></a></li>")
+
+                            </ul>
+                        </div><!-- end links -->
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end top-bar -->
+
+        <section class="flexslider-container" id="flexslider-container-3">
+
+            <div class="header-absolute" style="background-color: #183f3e">
+                <nav class="navbar navbar-expand-xl main-navbar navbar-custom navbar-transparent bg-transparent" id="mynavbar">
+                    <div class="container">
+
+                        <a href="https://thecroftcottages.com/" class="navbar-brand py-0 mr-4">
+                            <img src="~/Content/Star/images/logo.png" style="width:170px ;height:40px" alt="hotel-img" />
+                        </a>
+                        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
+                            <i class="fa fa-navicon py-0" style="color:white"></i>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="myNavbar1">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active mr-4">
+                                    <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+
+                                <li class="nav-item mr-4">
+                                    <a class="nav-link" href="/online-hotel-booking-naran">About Us</a>
+
+                                </li>
+
+                                <li class="nav-item mr-4">
+                                    <a class="nav-link" href="@Url.Action("Index","Gallery")">Gallery</a>
+
+                                </li>
+
+                                <li class="nav-item mr-4">
+                                    <a class="nav-link" href="/activities-in-naran-tourist-places">Places & Activities</a>
+
+                                </li>
+
+                                <li class="nav-item mr-4">
+                                    <a class="nav-link" href="@Url.Action("Index","Restaurant")">Restaurant</a>
+
+                                </li>
+
+                                <li class="nav-item mr-4">
+                                    <a class="nav-link" href="/naran-valley-updates">Blog</a>
+
+                                </li>
+
+
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/hotel-naran-contact-number">Contact Us</a>
+
+                                </li>
+
+
+
+                            </ul>
+                        </div><!-- end navbar collapse -->
+                    </div><!-- End container -->
+                </nav><!-- end navbar -->
+                <div class="sidenav-content">
+                    <!-- Sidebar  -->
+                    <nav id="sidebar" class="sidenav">
+                        <h2 id="web-name">
+                            <a href="https://thecroftcottages.com/">
+                                <img src="~/Content/Star/images/logo.png" style="width:170px ;height:40px" alt="hotel-img" />
+                            </a>
+                        </h2>
+                        <div id="main-menu">
+                            <div id="dismiss">
+                                <button class="btn" id="closebtn">&times;</button>
+                            </div>
+
+                            <div class="list-group panel">
+
+                                <a href="@Url.Action("Index","Home")" class="items-list">
+                                    Home
+                                </a>
+                                <a href="/online-hotel-booking-naran" class="items-list">
+                                    About Us
+                                </a>
+
+                                <a href="@Url.Action("Index","Gallery")" class="items-list">
+                                    Gallery
+                                </a>
+
+
+                                <a class="items-list" href="/activities-in-naran-tourist-places">Places & Activities</a>
+
+
+                                <a href="@Url.Action("Index","Restaurant")" class="items-list">
+                                    Restaurant
+                                </a>
+                                <a href="/naran-valley-updates" class="items-list">
+                                    Blog
+                                </a>
+                                <a href="/hotel-naran-contact-number" class="items-list">
+                                    Contact Us
+                                </a>
+
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div><!-- end header-absolute -->
+
+            <div class="flexslider slider" id="slider-3">
+                <ul class="slides">
+
+                    <li class="item-1 back-size" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(/Content/Star/images/croft.jpg); background-size: cover; height: 100%; ">
+                    </li><!-- end item-1 -->
+
+                    <li class="item-2 back-size" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(/Content/Star/images/croftpic3.jpg); background-size: cover; height: 100%; ">
+                    </li>
+                    <li class="item-2 back-size" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(/Content/Star/images/croftpic.jpg); background-size: cover; height: 100%; ">
+                    </li><!-- end item-2 -->
+
+                </ul>
+            </div><!-- end slider -->
+
+
+            <div class="search-tabs" id="search-tabs-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-6 col-xl-6 p-md-0">
+                            <div class="tab-content">
+
+
+                                <div id="hotels" class="tab-pane in active">
+                                    <form>
+                                        <div class="row">
+
+                                            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-6 col-lg-6">
+                                                        <div class="form-group left-icon">
+                                                            <label>Check In</label>
+                                                            <input type="text" class="form-control" id="dtFrom2" name="dtFrom2" />
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div><!-- end columns -->
+
+                                                    <div class="col-6 col-md-6 col-lg-6">
+                                                        <div class="form-group left-icon">
+                                                            <label>Check Out</label>
+                                                            <input type="text" class="form-control" id="dtTo2" name="dtTo2" />
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div><!-- end columns -->
+
+                                                </div><!-- end row -->
+                                            </div><!-- end columns -->
+
+                                            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                                <div class="row">
+
+                                                    <div class="col-12 col-md-12 col-lg-12">
+                                                        <div class="form-group right-icon">
+                                                            <label>Rooms</label>
+                                                            <select class="form-control" name="NoOfRooms" id="NoOfRooms">
+                                                                <option selected>01</option>
+                                                                <option>02</option>
+                                                                <option>03</option>
+                                                                <option>04</option>
+                                                            </select>
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </div>
+                                                    </div><!-- end columns -->
+
+                                                    <div class="col-6 col-md-6 col-lg-6">
+                                                        <div class="form-group right-icon">
+                                                            <label>Adults</label>
+                                                            <select class="form-control" name="Adults" id="Adults">
+                                                                <option selected>01</option>
+                                                                <option>02</option>
+                                                                <option>03</option>
+                                                                <option>04</option>
+                                                            </select>
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </div>
+                                                    </div><!-- end columns -->
+
+                                                    <div class="col-6 col-md-6 col-lg-6">
+                                                        <div class="form-group right-icon">
+                                                            <label>Kids</label>
+                                                            <select class="form-control" name="Children" id="Children">
+                                                                <option selected>0</option>
+                                                                <option>01</option>
+                                                                <option>02</option>
+                                                                <option>03</option>
+                                                                <option>04</option>
+                                                            </select>
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </div>
+                                                    </div><!-- end columns -->
+
+                                                </div><!-- end row -->
+                                            </div><!-- end columns -->
+
+                                            <div class="col-12 col-md-12 col-lg-12 col-xl-12 search-btn">
+                                                <a onclick="SearchResults2()" class="btn btn-w-border" style="color: white; background: #183f3e;">Search</a>
+                                            </div><!-- end columns -->
+
+                                        </div><!-- end row -->
+                                    </form>
+                                </div><!-- end hotels -->
+
+
+                            </div><!-- end tab-content -->
+
+                        </div><!-- end columns -->
+
+                        <div class="d-none d-lg-block col-lg-5 p-md-0">
+                            <div class="welcome-message">
+                                <h1>Welcome to The Croft Family Cottages in Naran</h1>
+                                <p>
+                                    Nestled amidst the breathtaking beauty of the Valley, Croft Family Cottages in Naran offers an unparalleled retreat for families, couples, and adventure seekers alike. Our cozy Naran cottages provide the perfect blend of comfort and tranquility, allowing you to unwind and reconnect with nature in style. Situated on the scenic Jheel Road, our luxury hotel is conveniently located near all the top attractions in Naran Valley, ensuring easy access to adventure and exploration
+                                </p>
+                                <a href="https://thecroftcottages.com/online-hotel-booking-naran" class="btn btn-w-border">Explore More</a>
+                            </div>
+
+                        </div><!-- end columns -->
+
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end search-tabs -->
+
+        </section>
+        <div class="popular-posts">
+
+            <div class="latest-tweet" style="border-radius: 15px">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/34d9173d65/naran/" data-label_1="WEATHER" data-label_2="FORECAST" data-theme="pure">MURREE WEATHER</a>
+            </div>
+        </div>
+        <!--========================= FLEX SLIDER =====================-->
+
+
+
+
+        @RenderBody()
+
+
+        <!--=============== TESTIMONIALS ===============-->
+        <section id="testimonials" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-heading white-heading">
+                            <h2>Testimonials</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
+
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <div class="carousel-inner text-center">
+
+                                <div class="carousel-item active">
+                                    <blockquote>“I stayed here for two nights and three days and had an amazing experience. The customer service was top-notch, and the quality of service exceeded my expectations. I highly recommend The Croft Family Cottages to anyone looking for quality and excellent service in Naran.”</blockquote>
+                                    <div class="rating">
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star lightgrey"></i></span>
+                                    </div><!-- end rating -->
+
+                                    <small>Kashif Sarwar</small>
+                                </div><!-- end item -->
+
+                                <div class="carousel-item">
+                                    <blockquote>
+                                        “Had a wonderful experience in the Croft family cottages. Rooms & Washroom were very neat and clean.
+                                        Staff was very cooperative.
+                                        Amazing Mountain & Stream view from the room.
+                                        Food taste was very good.
+                                        Highly recommended to all families✅
+                                        10/10✅✅✅✅”
+                                    </blockquote>
+                                    <div class="rating">
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star lightgrey"></i></span>
+                                    </div><!-- end rating -->
+
+                                    <small>Ehsan Zulfiqar</small>
+                                </div><!-- end item -->
+
+                                <div class="carousel-item">
+                                    <blockquote>“Highly recommended to visitors especially to the families who seek amenities-cum- privacy.  Location is astonishingly beautiful, hotel presents best of amenities, spacious and coziest rooms with spectacular and breathtaking views of surroundings. A gentle burbling stream hypnotizes the guests especially at night. Cuisines also worth mentioning.👍🏼”</blockquote>
+                                    <div class="rating">
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star orange"></i></span>
+                                        <span><i class="fa fa-star lightgrey"></i></span>
+                                    </div><!-- end rating -->
+
+                                    <small>Anees Ahmad</small>
+                                </div><!-- end item -->
+
+                            </div><!-- end carousel-inner -->
+
+                            <ol class="carousel-indicators mx-auto">
+                                <li data-target="#quote-carousel" data-slide-to="0" class="active">
+                                    <img src="~/Content/Star/images/google review.svg" class="img-fluid d-block" alt="client-img">
+                                </li>
+                                <li data-target="#quote-carousel" data-slide-to="1">
+                                    <img src="~/Content/Star/images/google review.svg" class="img-fluid d-block" alt="client-img">
+                                </li>
+                                <li data-target="#quote-carousel" data-slide-to="2">
+
+                                    <img src="~/Content/Star/images/google review.svg" class="img-fluid d-block" alt="client-img">
+                                </li>
+                            </ol>
+
+                        </div><!-- end quote-carousel -->
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end testimonials -->
+
+
+        <script>
+            $(document).ready(function () {
+                // Attach a click event handler to each carousel indicator
+                $('.carousel-indicators li').click(function () {
+                    // Get the index of the clicked indicator
+                    var index = $(this).data('slide-to');
+
+                    // Check if the index is valid
+                    if (index >= 0 && index <= 2) {
+                        // Redirect to the specified link
+                        window.location.href = 'https://maps.app.goo.gl/7TyPnCVui7q8sFxq5';
+                    }
+                });
+            });
+        </script>
+
+
+
+
+        <div id="faq-page" class="innerpage-section-padding">
+            <div class="container">
+
+                <div class="page-heading">
+                    <h2>FAQs – <a style="color:#000" href="/naran-hotel-pictures">The Croft Family</a> Cottages in Naran</h2>
+                    <hr class="heading-line" />
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 col-lg-12 content-side">
+                        <div class="faq-block">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse1"><h4 class="card-title">What types of rooms do you offer at The Croft Family Cottages in Naran?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Our hotel in Naran provides a variety of accommodation options, including Single Rooms, Double Rooms, Twin Rooms, and Deluxe Rooms, each designed for comfort and a unique experience.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse2"><h4 class="card-title">Are your Naran hotel rooms equipped with modern amenities?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Absolutely! Our rooms in Naran feature modern amenities such as en-suite bathrooms, comfortable bedding, and complimentary Wi-Fi to ensure a delightful stay
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse3"><h4 class="card-title">How far are you from popular attractions in Naran?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            We're strategically located near <a style="color:#000" href="/activities-in-naran-tourist-places">popular attractions</a> in Naran like Saif-ul-Mulook Lake and Lalazar, offering you convenient access to the breathtaking beauty of the Valley.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse4"><h4 class="card-title">Is parking available at The Croft Family Cottages Naran?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse4" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Yes, we provide ample parking space to ensure the safety and convenience of your vehicles during your stay at our Naran hotel.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse5"><h4 class="card-title">Can you arrange transport for local sightseeing?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse5" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Certainly! Our concierge can assist you in arranging transport for local sightseeing, ensuring you make the most of your Naran experience.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse6"><h4 class="card-title">Are there dining options at The Croft Family Cottages Naran?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse6" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Yes, we have an <a style="color:#000" href="/naran-restaurant">on-site restaurant</a> at our hotel in Naran serving a variety of local and international dishes, providing a culinary treat for our guests.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse7"><h4 class="card-title">What safety measures are in place at your cottages?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse7" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Your safety is our priority. We have implemented strict safety protocols, including 24/7 security, cameras surveillance to ensure a secure and comfortable stay.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse8"><h4 class="card-title">Can I get assistance with trekking and adventure activities?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse8" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Absolutely! Our staff can help arrange trekking and adventure activities, and other popular things to do in Naran allowing you to explore the rugged beauty of the Valley to the fullest.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse9"><h4 class="card-title">Are family-friendly facilities available?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse9" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Yes, we cater to families with amenities like spacious family rooms, kid-friendly activities, and a serene environment for a memorable family vacation.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" href="#collapse10"><h4 class="card-title">How can I make a reservation at The Croft Family Cottages?</h4></a>
+                                </div><!-- end card-header -->
+
+                                <div id="collapse10" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                        <p>
+                                            Booking with us is easy! You can make a reservation directly through our website or dial our<a style="color:#000" href="/hotel-naran-contact-number"> Naran Hotel contact number</a> to reach our reservations team for assistance.
+                                        </p>
+                                    </div><!-- end card-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
+
+                        </div><!-- end faq-block -->
+
+
+                    </div><!-- end columns -->
+
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end faq-page -->
+
+
+        <section id="testimonials" class="section-padding" style="border-bottom:2px solid #ffff">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-heading white-heading">
+                            <h2 style="font-size:36px">Your Ultimate Destination for the Best Hotels in Naran</h2>
+                            <hr class="heading-line" />
+                            <blockquote>
+                                Elevate your Naran experience with a stay at Croft Family Cottages, where luxury meets affordability in the heart of Naran Valley. As one of the premier hotels in Naran, we pride ourselves on offering unparalleled hospitality, top-notch amenities, and breathtaking surroundings that guarantee an unforgettable stay. Whether you're seeking a cozy retreat amidst nature or a convenient base for exploring the wonders of Naran Kaghan, our Naran hotel caters to every need and desire. With spacious accommodations, modern facilities, and a prime location on the scenic Jheel Road, Croft Family Cottages stands out as the perfect choice for discerning travelers looking for the best hotels in Naran Kaghan Valley. Experience the epitome of comfort and luxury at our hotel, where every moment is infused with warmth and hospitality.
+                            </blockquote>
+                        </div><!-- end page-heading -->
+
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end testimonials -->
+        <!--======================= FOOTER =======================-->
+
+        <section id="latest-blog" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-heading">
+                            <h2>Our Latest Blogs</h2>
+                            <hr class="heading-line" />
+                        </div>
+
+                        <div class="row">
+                            @foreach (var ro in blogs.Take(3))
+                            {
+                                string detailUrl = "/post/" + ro.PostId + "/" + ro.Slug;
+
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="main-block latest-block">
+                                        <div class="main-img latest-img">
+                                            <a href="#">
+                                                <img src="~/Uploads/blog/@ro.DefaultImage" class="img-fluid" alt="@ro.Title" />
+                                            </a>
+                                        </div>
+
+                                        <div class="latest-info">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <span><i class="fa fa-calendar-minus-o"></i></span>@Convert.ToDateTime(ro.PublishedDate).ToString("dd MMMM, yyyy")
+                                                    <span class="author">by: <a href="#">@ro.Author</a></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="main-info latest-desc">
+                                            <div class="row">
+                                                <div class="col-10 col-md-10">
+                                                    <a style="color: #000" href='@detailUrl'>@ro.Title</a>
+                                                    <p class="truncate-para" title="@ro.ShortDescriptions">@ro.ShortDescriptions</p>
+                                                </div>
+                                            </div>
+                                            <span class="arrow"><a href="#"><i class="fa fa-angle-right"></i></a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div><!-- end row -->
+
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+        
+        
+        <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
+
+            <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-4 footer-widget ftr-about">
+                            <div class="main-title-2">
+
+                                <h3 class="footer-heading">The Croft Family Cottages Naran</h3>
+                            </div>
+                            <blockquote>
+                                Experience the beauty of Naran Kaghan Valley like never before with a stay at Croft Family Cottages Naran.
+                                Whether you're planning a family vacation, romantic getaway, or solo adventure, our cottages provide the perfect
+                                setting for an unforgettable experience. Book your stay with us today and embark on a journey of relaxation,
+                                adventure, and rejuvenation amidst the stunning landscapes of Naran Valley.
+                            </blockquote>
+                            <ul class="social-links list-inline list-unstyled">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/croftfamilycottages"><span><i class="fa fa-facebook"></i></span></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/CroftCottages1"><span><i class="fa fa-twitter"></i></span></a></li>
+                                <li class="list-inline-item"><a href="https://www.instagram.com/croftfamilycottagesnaran/"><span><i class="fa fa-instagram"></i></span></a></li>
+                                @Html.Raw("<li class='list-inline-item'><a href='https://www.tiktok.com/@thecroftcottages' ><span><i class='fab fa-tiktok'></i></span></a></li>")
+                                @Html.Raw("<li class='list-inline-item'><a href='https://www.youtube.com/@TheCroftFamilyCottagesNaran'><span><i class='fa fa-youtube-play'></i></span></a></li>")
+
+                            </ul>
+                        </div><!-- end columns -->
+
+                        <div class="col-12 col-md-6 col-lg-3 col-xl-3 footer-widget ftr-contact">
+                            <div class="main-title-2">
+
+                                <h3 class="footer-heading">Contact Us</h3>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <span><i class="fa fa-map-marker" style="color:white"></i></span>
+                                    <a href="https://maps.app.goo.gl/BuxBAeNMr69RkfMw8" target="_blank">jheel road, Katha, Naran, Mansehra, Khyber Pakhtunkhwa</a>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-phone" style="color:white"></i></span>
+                                    <a href="tel:+923128888443">+923128888443</a>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-envelope" style="color:white"></i></span>
+                                    <a href="mailto:info@thecroftcottages.com">info@thecroftcottages.com</a>
+                                </li>
+                            </ul>
+                        </div><!-- end columns -->
+
+                        <div class="col-12 col-md-6 col-lg-2 col-xl-2 footer-widget ftr-links">
+
+                            <div class="main-title-2">
+
+                                <h3 class="footer-heading">Company</h3>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/online-hotel-booking-naran">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Gallery")">Gallery</a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Index","Restaurant")">Restaurent</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","PlacesandActivities")">Places&Activities</a>
+                                </li>
+                                <li>
+                                    <a href="/naran-valley-updates">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="/hotel-naran-contact-number">Contact Us</a>
+                                </li>
+
+
+                            </ul>
+                        </div><!-- end columns -->
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 footer-widget">
+                            <div class="main-title-2">
+
+                                <h3 class="footer-heading">Subscribe</h3>
+                            </div>
+
+                            <div class="footer-item">
+
+                                <div class="clearfix">
+                                    <p>
+                                        Sign Up for Our Newsletter to get Latest Updates and Offers.
+                                        Subscribe to receive news in your inbox.
+                                    </p>
+                                    <form class="form-inline d-flex" action="#">
+
+                                        <input class="input-group-field2" type="email" id="email" placeholder="Email Address...">
+
+                                        <button class="btn button-theme ml-1" type="submit" style=" border: 2px ; background-color: #fff; border-radius: 5px;">
+                                            <i class="fa fa-paper-plane" style="color: #183f3e"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end footer-top -->
+
+            <div id="footer-bottom" class="ftr-bot-black" style=" border-top: 1px solid #fff">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6" id="copyright">
+                            <p>© 2024 Made with <i class="fa fa-heart" style="color :rgb(255,193,7)"></i> By<a href="https://growbiztech.com/" target="_blank" style="color :rgb(255,193,7)"> GrowBiztech.com</a>. All Rights Reserved.</p>
+                        </div><!-- end columns -->
+
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6" id="terms">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item"><a href="/terms-and-conditions">Terms & Condition</a></li>
+                                <li class="list-inline-item"><a href="/privacy-policy">Privacy Policy</a></li>
+                            </ul>
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end footer-bottom -->
+
+        </section><!-- end footer -->
+    </div>
+
+
+    <a href="tel:+923128888443" class="floatp" target="_blank">
+        <i class="fa fa-phone my-floatp mt-2"></i>
+    </a>
+    <a href="https://wa.me/+923128888443? text=Hi! The Croft Cottages." class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float mt-2"></i>
+    </a>
+
+
+    <!-- Page Scripts Starts -->
+    <script src="~/Content/Star/js/jquery-3.3.1.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" crossorigin="anonymous"></script>
+    <script src="~/Content/Star/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Star/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Content/Star/js/bootstrap-4.4.1.min.js"></script>
+    <script src="~/Content/Star/js/jquery.flexslider.js"></script>
+    <script src="~/Content/Star/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/Star/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Star/js/custom-navigation.js"></script>
+    <script src="~/Content/Star/js/custom-flex.js"></script>
+    <script src="~/Content/Star/js/custom-owl.js"></script>
+    <script src="~/Content/Star/js/custom-date-picker.js"></script>
+    <script src="~/Content/Star/js/custom-gallery.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    <script>
+        $(document).ready(function () {
+            var currentUrl = window.location.pathname;
+
+            // Iterate through each navigation link and check if it matches the current URL
+            $('.navbar-nav a').each(function () {
+                var linkUrl = $(this).attr('href');
+
+                if (currentUrl === linkUrl) {
+                    $(this).closest('li').addClass('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Get the current URL path
+        var currentPath = window.location.pathname;
+
+        // Select all menu items with class "items-list"
+        var menuItems = document.querySelectorAll('.items-list');
+
+        // Loop through the menu items
+        menuItems.forEach(function (item) {
+            // Get the href attribute of each menu item
+            var itemPath = item.getAttribute('href');
+
+            // Check if the current path matches the menu item's href
+            if (currentPath === itemPath) {
+                // Add the "active" class to the matching menu item
+                item.classList.add('active');
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize date range picker for dtFrom2
+            $('input[name="dtFrom2"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                autoClose: true,
+                minDate: moment(),
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoApply: true
+            }, function (start, end, label) {
+                // If no date selected, fallback to today
+                if (!start) {
+                    start = moment();
+                }
+
+                // Calculate the next day for dtTo2 default value
+                let nextDay = moment(start).add(1, 'days');
+
+                // Destroy any existing dtTo2 picker before reinitializing
+                $('input[name="dtTo2"]').daterangepicker('destroy');
+
+                // Re-initialize dtTo2 with new minDate and set next day as selected date
+                initializeDtTo2(start, nextDay);
+            });
+
+            // Initialize date range picker for dtTo2
+            function initializeDtTo2(minDate, defaultDate) {
+                $('input[name="dtTo2"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1901,
+                    autoClose: true,
+                    minDate: minDate,
+                    startDate: defaultDate || minDate, // Use defaultDate if provided
+                    maxYear: parseInt(moment().format('YYYY'), 10),
+                    autoApply: true
+                });
+            }
+
+            // Initial initialization of dtTo2 (from today's date + 1)
+            let today = moment();
+            let tomorrow = moment().add(1, 'days');
+            initializeDtTo2(today, tomorrow);
+        });
+    </script>
+
+    <!-- Page Scr~/content/Star/ipts Ends -->
+    <script>
+        !(function (d, s, id) {
+            var js,
+                fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://weatherwidget.io/js/widget.min.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        })(document, "script", "weatherwidget-io-js");</script>
+    <script>
+        function SearchResults2() {
+
+            var buttons = document.querySelectorAll('.srch');
+            var StartDate = document.getElementsByName('dtFrom2')[0].value;
+            var EndDate = document.getElementsByName('dtTo2')[0].value;
+            var RoomValue = document.getElementsByName('NoOfRooms')[0].value;
+            var Adults = document.getElementsByName('Adults')[0].value;
+            var Kids = document.getElementsByName('Children')[0].value;
+
+            if (StartDate === EndDate) {
+                alert("Check-out should not occur on the same date as check-in");
+                return false;
+            }
+
+            // Loop through each button and disable it
+            buttons.forEach(function (button) {
+                button.disabled = true;
+            });
+
+
+
+            window.location.href = "../Home/PropertySearch?CheckIn=" + StartDate + "&CheckOut=" + EndDate + "&Adults=" + Adults + "&Children=" + Kids + "&NoOfRooms=" + RoomValue;
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
